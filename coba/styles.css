@@ -1,0 +1,60 @@
+/* Popup Chat */
+.chat-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  width: 300px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  z-index: 9999; /* Z-index tinggi agar popup muncul di atas elemen lainnya */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Header untuk Popup Chat */
+.chat-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Body untuk Popup Chat */
+.chat-body {
+  height: 200px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+/* Footer untuk Popup Chat */
+.chat-footer {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.chat-footer textarea {
+  width: 80%;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.chat-footer button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.close-chat-btn {
+  background-color: #e74c3c;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}

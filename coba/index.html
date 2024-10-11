@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Popup Chat</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav>
+      <!-- Tombol untuk membuka chat -->
+      <button id="openChatBtn" class="open-chat-btn">Chat</button>
+    </nav>
+
+    <!-- Popup Chat -->
+    <div class="chat-popup" id="myChatPopup">
+      <div class="chat-header">
+        <span id="chatHeaderTitle">Chat</span>
+        <button id="closeChatBtn" class="close-chat-btn">Close</button>
+      </div>
+      <div class="chat-body">
+        <!-- Chat messages will be displayed here -->
+        <p>Ini pesan pertama.</p>
+        <p>Ini pesan kedua.</p>
+      </div>
+      <div class="chat-footer">
+        <textarea id="chatInput" placeholder="Type a message..."></textarea>
+        <button id="sendMessageBtn">Send</button>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

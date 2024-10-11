@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>My Planet</title>
+  </head>
+  <body>
+    <nav>
+      <div class="left_nav">
+        <div class="logo">
+          <img
+            src="./assets/attribute myplanet/Logo My PlanEt.png"
+            alt="My PlanET"
+          />
+          <p>My PlanET</p>
+        </div>
+      </div>
+      <div class="mid_nav">
+        <ul>
+          <li><a href="#">Tentang Kami</a></li>
+          <li><a href="">Banding Harga</a></li>
+          <li><a href="">Cek Transaksi</a></li>
+          <li><a href="">Search</a></li>
+        </ul>
+      </div>
+      <div class="right_nav">
+        <div class="masuk-daftar">
+          <a href="">Masuk</a>
+          <a href="">Daftar</a>
+        </div>
+        <div class="Dropdown" style="display: none">
+          <div class="profil">
+            <button>Profil</button>
+          </div>
+          <div class="Content-dropdown" style="display: none">
+            <a href="">Dashboard</a>
+            <a href="">keluar</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="container2">
+        <div class="container2-slider1">
+          <div class="slider-container-landscape">
+            <div class="slider-landscape">
+              <div class="slide-landscape active">
+                <img
+                  src="./assets/attribute myplanet/Bakground_home.png"
+                  alt="Promosi Landscape 1"
+                />
+              </div>
+              <div class="slide-landscape active">
+                <img
+                  src="./assets/attribute myplanet/Background2.jpg"
+                  alt="Promosi Landscape 2"
+                />
+              </div>
+              <div class="slide-landscape active">
+                <img
+                  src="./assets/attribute myplanet/Background.jpg"
+                  alt="Promosi Landscape 3"
+                />
+              </div>
+            </div>
+            <button class="prev-landscape" onclick="prevSlideLandscape()">
+              &#10094;
+            </button>
+            <button class="next-landscape" onclick="nextSlideLandscape()">
+              &#10095;
+            </button>
+          </div>
+        </div>
+        <div class="container2-slider2">
+          <div class="slider-container">
+            <div class="slider">
+              <div class="slide">
+                <div class="promosi-content">
+                  <h2 class="promosi-title">Big Sale! Up to 50% OFF</h2>
+                  <p class="promosi-description">
+                    Get amazing discounts on our selected products. Limited time
+                    offer!
+                  </p>
+                  <button class="promosi-button">Shop Now</button>
+                </div>
+                <div class="promosi-banner">
+                  <img
+                    src="./assets/attribute myplanet/Bakground_home.png"
+                    alt="Promosi Banner 1"
+                  />
+                </div>
+              </div>
+              <div class="slide">
+                <div class="promosi-content">
+                  <h2 class="promosi-title">New Arrivals! Check them out!</h2>
+                  <p class="promosi-description">
+                    Discover our latest products with great offers. Don't miss
+                    out!
+                  </p>
+                  <button class="promosi-button">Shop Now</button>
+                </div>
+                <div class="promosi-banner">
+                  <img
+                    src="./assets/attribute myplanet/Background.jpg"
+                    alt="Promosi Banner 2"
+                  />
+                </div>
+              </div>
+              <div class="slide">
+                <div class="promosi-content">
+                  <h2 class="promosi-title">New Arrivals! Check them out!</h2>
+                  <p class="promosi-description">
+                    Discover our latest products with great offers. Don't miss
+                    out!
+                  </p>
+                  <button class="promosi-button">Shop Now</button>
+                </div>
+                <div class="promosi-banner">
+                  <img
+                    src="./assets/attribute myplanet/Background2.jpg"
+                    alt="Promosi Banner 2"
+                  />
+                </div>
+              </div>
+            </div>
+            <!-- Tombol navigasi -->
+            <button class="prev" onclick="prevSlide()">&#10094;</button>
+            <button class="next" onclick="nextSlide()">&#10095;</button>
+          </div>
+          <div class="iklan-banner-promosi3">
+            <div class="slide-wrapper3">
+              <div class="slide3-banner-promosi3">
+                <img
+                  src="./assets/attribute myplanet/Background.jpg"
+                  alt="Promosi Landscape 1"
+                />
+              </div>
+              <div class="slide3-banner-promosi3">
+                <img
+                  src="./assets/attribute myplanet/Background2.jpg"
+                  alt="Promosi Landscape 2"
+                />
+              </div>
+              <div class="slide3-banner-promosi3">
+                <img
+                  src="./assets/attribute myplanet/Bakground_home.png"
+                  alt="Promosi Landscape 3"
+                />
+              </div>
+              <div class="slide3-banner-promosi3">
+                <img
+                  src="./assets/attribute myplanet/WhatsApp Image 2024-08-07 at 17.47.37_8a85fcd6.jpg"
+                  alt="Promosi Landscape 4"
+                />
+              </div>
+            </div>
+            <!-- Tombol Navigasi -->
+            <button class="prev3" onclick="prevSlide3()">&#10094;</button>
+            <button class="next3" onclick="nextSlide3()">&#10095;</button>
+            <!-- Dot Navigasi -->
+            <div class="dot-container">
+              <span class="dot" onclick="showSlide3(0)"></span>
+              <span class="dot" onclick="showSlide3(1)"></span>
+              <span class="dot" onclick="showSlide3(2)"></span>
+              <span class="dot" onclick="showSlide3(3)"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="judul">
+        <p>VENDOR</p>
+      </div>
+      <div class="container-vendor">
+        <div class="vendor-container">
+          <div class="vendor-card">
+            <img
+              src="./assets/attribute myplanet/Background.jpg"
+              alt="Vendor 1"
+              class="vendor-image"
+            />
+            <div class="vendor-info">
+              <h3 class="vendor-name">Vendor 1</h3>
+              <p class="vendor-description">Short description of Vendor 1.</p>
+            </div>
+          </div>
+          <div class="vendor-card">
+            <img
+              src="./assets/attribute myplanet/Background2.jpg"
+              alt="Vendor 2"
+              class="vendor-image"
+            />
+            <div class="vendor-info">
+              <h3 class="vendor-name">Vendor 2</h3>
+              <p class="vendor-description">Short description of Vendor 2.</p>
+            </div>
+          </div>
+          <div class="vendor-card">
+            <img
+              src="./assets/attribute myplanet/Bakground_home.png"
+              alt="Vendor 1"
+              class="vendor-image"
+            />
+            <div class="vendor-info">
+              <h3 class="vendor-name">Vendor 1</h3>
+              <p class="vendor-description">Short description of Vendor 1.</p>
+            </div>
+          </div>
+          <div class="vendor-card">
+            <img
+              src="./assets/attribute myplanet/Background.jpg"
+              alt="Vendor 1"
+              class="vendor-image"
+            />
+            <div class="vendor-info">
+              <h3 class="vendor-name">Vendor 1</h3>
+              <p class="vendor-description">Short description of Vendor 1.</p>
+            </div>
+          </div>
+          <div class="vendor-card">
+            <img
+              src="./assets/attribute myplanet/Background2.jpg"
+              alt="Vendor 1"
+              class="vendor-image"
+            />
+            <div class="vendor-info">
+              <h3 class="vendor-name">Vendor 1</h3>
+              <p class="vendor-description">Short description of Vendor 1.</p>
+            </div>
+          </div>
+          <div class="vendor-card">
+            <img
+              src="./assets/attribute myplanet/Bakground_home.png"
+              alt="Vendor 1"
+              class="vendor-image"
+            />
+            <div class="vendor-info">
+              <h3 class="vendor-name">Vendor 1</h3>
+              <p class="vendor-description">Short description of Vendor 1.</p>
+            </div>
+          </div>
+          <!-- Add more vendor cards as needed -->
+        </div>
+      </div>
+      <div class="judul">
+        <p>PRODUK</p>
+      </div>
+      <div class="container_product">
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="./assets/attribute myplanet/Background.jpg"
+              alt="Product 1"
+            />
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Product Name</h3>
+            <p class="product-price">$29.99</p>
+            <p class="product-discount">20% OFF</p>
+          </div>
+          <div class="product-actions">
+            <button class="btn-add-to-cart">Lihat Detail</button>
+            <button class="btn-buy-now">Buy Now</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="./assets/attribute myplanet/Background2.jpg"
+              alt="Product 1"
+            />
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Product Name</h3>
+            <p class="product-price">$29.99</p>
+            <p class="product-discount">20% OFF</p>
+          </div>
+          <div class="product-actions">
+            <button class="btn-add-to-cart">Lihat Detail</button>
+            <button class="btn-buy-now">Buy Now</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="./assets/attribute myplanet/Background.jpg"
+              alt="Product 1"
+            />
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Product Name</h3>
+            <p class="product-price">$29.99</p>
+            <p class="product-discount">20% OFF</p>
+          </div>
+          <div class="product-actions">
+            <button class="btn-add-to-cart">Lihat Detail</button>
+            <button class="btn-buy-now">Buy Now</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="./assets/attribute myplanet/Background2.jpg"
+              alt="Product 1"
+            />
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Product Name</h3>
+            <p class="product-price">$29.99</p>
+            <p class="product-discount">20% OFF</p>
+          </div>
+          <div class="product-actions">
+            <button class="btn-add-to-cart">Lihat Detail</button>
+            <button class="btn-buy-now">Buy Now</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="./assets/attribute myplanet/Background.jpg"
+              alt="Product 1"
+            />
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Product Name</h3>
+            <p class="product-price">$29.99</p>
+            <p class="product-discount">20% OFF</p>
+          </div>
+          <div class="product-actions">
+            <button class="btn-add-to-cart">Lihat Detail</button>
+            <button class="btn-buy-now">Buy Now</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="./assets/attribute myplanet/Background2.jpg"
+              alt="Product 1"
+            />
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Product Name</h3>
+            <p class="product-price">$29.99</p>
+            <p class="product-discount">20% OFF</p>
+          </div>
+          <div class="product-actions">
+            <button class="btn-add-to-cart">Lihat Detail</button>
+            <button class="btn-buy-now">Buy Now</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="./assets/attribute myplanet/Background.jpg"
+              alt="Product 1"
+            />
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Product Name</h3>
+            <p class="product-price">$29.99</p>
+            <p class="product-discount">20% OFF</p>
+          </div>
+          <div class="product-actions">
+            <button class="btn-add-to-cart">Lihat Detail</button>
+            <button class="btn-buy-now">Buy Now</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="./assets/attribute myplanet/Background2.jpg"
+              alt="Product 1"
+            />
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Product Name</h3>
+            <p class="product-price">$29.99</p>
+            <p class="product-discount">20% OFF</p>
+          </div>
+          <div class="product-actions">
+            <button class="btn-add-to-cart">Lihat Detail</button>
+            <button class="btn-buy-now">Buy Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="content-footer">
+        <div class="container-footer">
+          <div class="desksingkatmyplanet">
+            <div class="logo">
+              <img
+                src="./assets/attribute myplanet/Logo My PlanEt.png"
+                alt="My PlanET"
+              />
+              <h3>My PlanET</h3>
+            </div>
+            <p>
+              My PlanEt adalah platform perencana acara yang menggabungkan
+              teknologi dan kreativitas untuk menyelenggarakan acara yang tak
+              terlupakan.
+            </p>
+          </div>
+          <div class="sitemap">
+            <h3>Situs Map</h3>
+            <ul>
+              <li>Cek Transaksi</li>
+              <li>Banding Harga</li>
+              <li>Dashboard</li>
+              <li>Tentang Kami</li>
+            </ul>
+          </div>
+          <div class="sosmed">
+            <h3>Sosial Media</h3>
+            <ul>
+              <li>Tiktok</li>
+              <li>Instagram</li>
+              <li>Facebook</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>©℗ 2024 My Planet. All rights reserved.</p>
+      </div>
+    </footer>
+    <script>
+      let currentSlideLandscape = 0; // Index slide saat ini
+      const slidesLandscape = document.querySelectorAll(".slide-landscape"); // Ambil semua elemen slide
+      const slideWrapperLandscape = document.querySelector(".slider-landscape"); // Ambil wrapper slide
+
+      function showSlideLandscape(index) {
+        // Atur transform untuk menggeser wrapper slide ke slide yang diinginkan
+        slideWrapperLandscape.style.transform = `translateX(${-index * 100}%)`;
+
+        // Update index slide saat ini
+        currentSlideLandscape = index;
+      }
+
+      function nextSlideLandscape() {
+        currentSlideLandscape =
+          (currentSlideLandscape + 1) % slidesLandscape.length; // Pergi ke slide berikutnya
+        showSlideLandscape(currentSlideLandscape);
+      }
+
+      function prevSlideLandscape() {
+        currentSlideLandscape =
+          (currentSlideLandscape - 1 + slidesLandscape.length) %
+          slidesLandscape.length; // Pergi ke slide sebelumnya
+        showSlideLandscape(currentSlideLandscape);
+      }
+
+      // Inisialisasi slider
+      showSlideLandscape(currentSlideLandscape);
+
+      // Auto-slide setiap 5 detik (opsional)
+      setInterval(nextSlideLandscape, 5000);
+
+      let slideIndex = 0; // Index slide saat ini
+
+      function showSlide(index) {
+        const slides = document.querySelectorAll(".slide");
+        if (index >= slides.length) {
+          slideIndex = 0;
+        } else if (index < 0) {
+          slideIndex = slides.length - 1;
+        }
+
+        // Mengatur transformasi untuk mengganti slide
+        const slider = document.querySelector(".slider");
+        slider.style.transform = `translateX(-${slideIndex * 100}%)`;
+      }
+
+      function nextSlide() {
+        slideIndex++;
+        showSlide(slideIndex);
+      }
+
+      function prevSlide() {
+        slideIndex--;
+        showSlide(slideIndex);
+      }
+
+      // Fungsi untuk menjalankan slider secara otomatis
+      function autoSlide() {
+        nextSlide();
+        setTimeout(autoSlide, 3000); // Pindah ke slide berikutnya setiap 3 detik
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        showSlide(slideIndex); // Tampilkan slide pertama
+        autoSlide(); // Mulai slider otomatis
+      });
+
+      let currentSlide3 = 0; // Index slide saat ini
+      const slides3 = document.querySelectorAll(".slide3-banner-promosi3"); // Ambil semua elemen slide
+      const slideWrapper3 = document.querySelector(".slide-wrapper3"); // Ambil wrapper slide
+      const dots3 = document.querySelectorAll(".iklan-banner-promosi3 .dot"); // Ambil semua dot navigasi
+
+      function showSlide3(index) {
+        // Atur transform untuk menggeser wrapper slide ke slide yang diinginkan
+        slideWrapper3.style.transform = `translateX(${-index * 100}%)`;
+
+        // Update status dot navigasi
+        dots3.forEach((dot, idx) => {
+          dot.classList.toggle("active", idx === index);
+        });
+
+        currentSlide3 = index; // Simpan index slide saat ini
+      }
+
+      function nextSlide3() {
+        currentSlide3 = (currentSlide3 + 1) % slides3.length; // Pergi ke slide berikutnya
+        showSlide3(currentSlide3);
+      }
+
+      function prevSlide3() {
+        currentSlide3 = (currentSlide3 - 1 + slides3.length) % slides3.length; // Pergi ke slide sebelumnya
+        showSlide3(currentSlide3);
+      }
+
+      // Inisialisasi slider
+      showSlide3(currentSlide3);
+
+      // Auto-slide setiap 5 detik
+      setInterval(nextSlide3, 5000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,375 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--text-color);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, var(--background-color) 0%, #6e6666 100%);
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+:root {
+  --text-color: #ffffff;
+  --background-color: #3c025d;
+  --border-color: #7e7e7e;
+  --font-size: 1.3em;
+  --font-footer: 1em;
+}
+
+/* Styling untuk navigasi */
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background-color);
+  width: 100%;
+  height: 10vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  border-bottom: 0.5vw solid var(--text-color);
+}
+
+.left_nav {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 5vw;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+}
+
+.logo a {
+  text-decoration: none;
+  font-size: var(--font-size);
+  color: var(--text-color);
+}
+
+.logo img {
+  width: 2.5vw;
+  height: auto;
+}
+
+.right_nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 5vw;
+}
+
+.profil button {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: var(--font-size);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profil button:hover {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+
+.Dropdown {
+  position: relative;
+}
+
+.Content-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--background-color);
+  border-bottom-left-radius: 0.5vw;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.772);
+  z-index: 1;
+  width: 8vw;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.Content-dropdown a {
+  display: block;
+  color: var(--text-color);
+  padding: 12px 20px;
+  text-decoration: none;
+  font-size: var(--font-footer);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.Content-dropdown a:hover {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+
+.Dropdown:hover .Content-dropdown {
+  display: block;
+}
+/* Container untuk layout utama (Sidebar + Chat) */
+.container {
+  display: flex;
+  margin-top: 10vh; /* Memberikan ruang untuk navbar */
+  height: calc(100vh - 10vh); /* Mengurangi tinggi navbar */
+}
+
+/* Sidebar untuk daftar user/vendor */
+aside {
+  width: 20vw;
+  background-color: var(--background-color);
+  border-right: 1px solid var(--text-color);
+  padding: 15px;
+  overflow-y: auto;
+}
+
+.account-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.account-card {
+  background-color: var(--background-color);
+  border: 1px solid #fff;
+  padding: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 10px;
+  box-sizing: border-box; /* Pastikan padding termasuk dalam ukuran total elemen */
+  overflow: hidden; /* Menyembunyikan konten yang melebihi batas */
+  text-overflow: ellipsis; /* Tampilkan "..." jika teks terlalu panjang */
+  white-space: nowrap; /* Pastikan teks tidak membungkus ke baris baru */
+}
+
+.account-card:hover {
+  background-color: rgba(127, 8, 196, 0.574);
+}
+
+.account-card.active {
+  background-color: #5f0294; /* Warna latar belakang berbeda saat aktif */
+  border: 1px solid #1890ff; /* Beri highlight border */
+  color: #1890ff; /* Teks warna saat aktif */
+}
+
+.unread-count {
+  background-color: #ff3b30;
+  color: #fff;
+  border-radius: 50%;
+  padding: 5px;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.account-card.active h3{
+    color: #fff;
+}
+.account-card.active p {
+  color: rgb(184, 184, 184);
+}
+
+/* Area utama chat */
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  padding: 0;
+}
+
+/* Header chat (tetap di atas) */
+.chat-header {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Area chat */
+.chat-area {
+  flex-grow: 1;
+  background-color: var(--background-color);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: none; /* Sembunyikan scrollbar di Firefox */
+}
+
+/* Pesan */
+.message {
+  padding: 12px 15px;
+  margin: 10px 0;
+  border-radius: 15px;
+  max-width: 70%;
+  word-wrap: break-word; /* Ini akan memecah kata yang terlalu panjang */
+  overflow-wrap: break-word; /* Jika kata panjang melebihi lebar, akan dipotong */
+  font-size: 1rem;
+  line-height: 1.4;
+  position: relative;
+  display: inline-block;
+  white-space: pre-wrap; /* Memastikan spasi dan baris baru dipertahankan */
+}
+
+/* Pesan Terkirim */
+.message-sent {
+  background-color: #daf8cb;
+  color: #000;
+  width: fit-content;
+  max-width: 20vw;
+  height: fit-content;
+  align-self: flex-end;
+  text-align: right;
+  margin-left: auto;
+  border-top-right-radius: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Pesan Diterima */
+.message-received {
+  background-color: #f1f0f0;
+  color: #000;
+  width: fit-content;
+  max-width: 20vw;
+  height: fit-content;
+  align-self: flex-start;
+  text-align: left;
+  margin-right: auto;
+  border-top-left-radius: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Tanda waktu (timestamp) di sudut kanan bawah setiap pesan */
+.message .timestamp {
+  font-size: 0.75rem;
+  color: #fff1f1;
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+}
+
+/* Chat bubbles */
+.message-sent:after,
+.message-received:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.message-sent:after {
+  right: -10px;
+  border-width: 10px 0 0 10px;
+  border-color: transparent transparent transparent #dcf8c6;
+}
+
+.message-received:after {
+  left: -10px;
+  border-width: 10px 10px 0 0;
+  border-color: transparent #fff transparent transparent;
+}
+
+/* Hover effect for messages */
+.message:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Form untuk kirim pesan */
+form {
+  display: flex;
+  align-items: center;
+  background-color: var(--background-color);
+  padding: 15px 20px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #ddd;
+}
+
+textarea {
+  width: 85%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  color: #000;
+  outline: none;
+  resize: none;
+  height: 40px;
+  max-height: 100px; /* Batasi tinggi maksimum untuk teks panjang */
+  overflow-y: auto; /* Scroll untuk teks yang melebihi tinggi maksimum */
+  margin-right: 10px;
+  scrollbar-width: none; /* Sembunyikan scrollbar di Firefox */
+}
+
+/* Sembunyikan scrollbar di browser berbasis WebKit (Chrome, Safari) */
+textarea::-webkit-scrollbar {
+  display: none;
+}
+
+button {
+  background-color: #0084ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.25rem;
+}
+
+button:hover {
+  background-color: #006fdc;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+/* Sembunyikan scrollbar di browser berbasis WebKit (Chrome, Safari) */
+.chat-area::-webkit-scrollbar {
+  display: none;
+}
+.unread-count {
+  background-color: #28a745;
+  color: white;
+  font-size: 0.8em;
+  padding: 5px 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 10px;
+  font-weight: bold;
+}

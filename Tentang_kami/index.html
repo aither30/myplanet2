@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM4J9fekP3kv12xs2vl7ur+ZDaR0Lp0QbsXYI5H" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>My PlanET</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+          
+            <div class="menu">
+                <div class="left_nav">
+                    <div class="logo">
+                        <a href="#">
+                            <img src="./assets/logo2.png" alt="">
+                            <span>My PlanET</span>
+                        </a>
+                    </div>
+                </div>  
+              <div class="header-content-1">
+                <div class="left-content">
+                  <div class="home">
+                    <a href="./index.php"
+                      ><i class="material-icons">home</i>Beranda</a>
+                  </div>
+                  <div class="cek-transaction">
+                    <a href="./Transaksi/cektransaksi.php"
+                      ><i class="material-icons">search</i>Cek Transaksi</a
+                    >
+                  </div>
+                  <div class="compare-price">
+                    <a href="./Banding Harga/Compare.php"
+                      ><span class="material-symbols-outlined">compare_arrows</span
+                      >Banding Harga</a>
+                  </div>
+                </div>
+              </div>
+              <div class="header-content-2">
+                <div class="right-content">
+                  <div class="search-container">
+                    <button id="searchButton">
+                      <i class="material-icons">search</i>
+                    </button>
+                  </div>
+                  <div class="language-selector">
+                    <select id="languageSelect" onchange="changeLanguage()">
+                      <option value="id">ID</option>
+                      <option value="en">Eng</option>
+                      <!-- Tambahkan pilihan bahasa lainnya sesuai kebutuhan -->
+                    </select>
+                  </div>
+                  <div class="auth-links">
+                    <div class="loginButton" id="loginButtonContainer">
+                      <a href="./login/login.php" id="loginButton">Masuk</a>
+                    </div>
+                    <div class="registerButton" id="registerButtonContainer">
+                      <a href="../Register/register.php" id="registerButton">Daftar</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+    </header>
+   
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <img src="./assets/logo2.png" alt="">
+                <p>My PlanEt adalah platform perencana acara yang menggabungkan teknologi dan kreativitas untuk menyelenggarakan acara yang tak terlupakan.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Layanan Kami</a></li>
+                    <li><a href="#">Cek Transaksi</a></li>
+                    <li><a href="#">Banding Harga</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Layanan Kami</h3>
+                <ul>
+                    <li><a href="#">Pernikahan</a></li>
+                    <li><a href="#">Acara Korporat</a></li>
+                    <li><a href="#">Konser Musik</a></li>
+                    <li><a href="#">Pesta Ulang Tahun</a></li>
+                    <li><a href="#">Outbound</a></li>
+                    <li><a href="#">E-sport</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect With Us</h3>
+                <ul class="social-links">
+                    <li><a href="#"><img src="images/instagram-icon.png" alt="Instagram"> Instagram</a></li>
+                    <li><a href="#"><img src="images/tiktok-icon.png" alt="TikTok"> TikTok</a></li>
+                    <li><a href="#"><img src="images/twitter-icon.png" alt="Twitter"> Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('toggleButton').addEventListener('click', function() {
+            var detailProdukCompare = document.querySelector('.detail_produk_compare');
+            var increaseProdukCompare = document.querySelector('.increase_produk_compare');
+            var footCompare = document.getElementById('footCompare');
+            var containerCompare = document.getElementById('containerCompare');  // Perbaikan typo
+        
+            // Toggle display untuk detail_produk_compare
+            if (detailProdukCompare.style.display === "none" || detailProdukCompare.style.display === "") {
+                detailProdukCompare.style.display = "flex";
+            } else {
+                detailProdukCompare.style.display = "none";
+            }
+        
+            // Toggle display untuk increase_produk_compare
+            if (increaseProdukCompare.style.display === "none" || increaseProdukCompare.style.display === "") {
+                increaseProdukCompare.style.display = "flex";
+            } else {
+                increaseProdukCompare.style.display = "none";
+            }
+        
+            // Toggle position between 'absolute' and 'static'
+            if (footCompare.style.position === "static" || footCompare.style.position === "") {
+                footCompare.style.position = "absolute";
+            } else {
+                footCompare.style.position = "static";
+            }
+        
+            // Toggle margin-bottom untuk containerCompare
+            if (containerCompare.style.marginBottom === "3vw" || containerCompare.style.marginBottom === "") {
+                containerCompare.style.marginBottom = "13vw";
+            } else {
+                containerCompare.style.marginBottom = "3vw";
+            }
+        });
+        
+        document.getElementById('toggleButtonVendor').addEventListener('click', function() {
+            var detailVendorCompare = document.querySelector('.detail_vendor_compare');
+            var increaseVendorCompare = document.querySelector('.increase_vendor_compare');
+            var footCompareVendor = document.getElementById('footCompareVendor');
+            var containerCompareVendor = document.getElementById('containerCompareVendor');  // Perbaikan typo
+        
+            if (detailVendorCompare.style.display === "none" || detailVendorCompare.style.display === "") {
+                detailVendorCompare.style.display = "flex";
+            } else {
+                detailVendorCompare.style.display = "none";
+            }
+        
+            if (increaseVendorCompare.style.display === "none" || increaseVendorCompare.style.display === "") {
+                increaseVendorCompare.style.display = "flex";
+            } else {
+                increaseVendorCompare.style.display = "none";
+            }
+        
+            if (footCompareVendor.style.position === "static" || footCompareVendor.style.position === "") {
+                footCompareVendor.style.position = "absolute";
+            } else {
+                footCompareVendor.style.position = "static";
+            }
+
+            if (containerCompareVendor.style.marginBottom === "3vw" || containerCompareVendor.style.marginBottom === "") {
+                containerCompareVendor.style.marginBottom = "13vw";
+            } else {
+                containerCompareVendor.style.marginBottom = "3vw";
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const openFormButton = document.getElementById('open-form');
+            const modal = document.getElementById('vendor-modal');
+            const closeButton = document.querySelector('.close-btn');
+        
+            openFormButton.addEventListener('click', () => {
+                modal.style.display = 'block';
+            });
+        
+            closeButton.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+        
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+        
+    
+    </script>
+</body>
+</html>

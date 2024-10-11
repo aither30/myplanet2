@@ -1,0 +1,1093 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, var(--background-color), #2e0147);
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background-color);
+  min-width: 100vw;
+  height: 10vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  border-bottom: 0.5vw solid var(--text-color);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 10vh;
+  overflow-x: hidden;
+}
+
+:root {
+  --text-color: #ffffff; /* Dark theme */
+  --background-color: #3c025d;
+  --border-color: #7e7e7e;
+  --font-size: 1.3em;
+  --font-footer: 1em;
+  --hover-color: #540184;
+}
+
+.dark-theme {
+  --text-color: #3c025d; /* Light theme */
+  --background-color: #ffffff;
+  --border-color: #dddddd;
+  --hover-color: #b0afaf;
+}
+
+.left_nav {
+  display: flex;
+  flex-direction: row;
+  margin-left: 5vw;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+}
+
+.logo a {
+  text-decoration: none;
+  font-size: var(--font-size);
+  color: var(--text-color);
+}
+
+.mid_nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.logo img {
+  background-color: #3c025d;
+  width: 2.5vw;
+  height: auto;
+  padding: 0.3vw;
+  border-radius: 0.5vw;
+  -webkit-border-radius: 0.5vw;
+  -moz-border-radius: 0.5vw;
+  -ms-border-radius: 0.5vw;
+  -o-border-radius: 0.5vw;
+}
+
+.mid_nav ul {
+  display: flex;
+  flex-direction: row;
+  gap: 2vw;
+}
+
+.mid_nav ul li {
+  display: flex;
+  list-style-type: none;
+  color: var(--text-color);
+  font-size: var(--font-size);
+}
+
+.mid_nav ul li a {
+  color: var(--text-color);
+  text-decoration: none;
+  border-bottom: 0.3vw solid transparent;
+}
+
+.bandingharga button:hover,
+.mid_nav ul li a:hover {
+  border-radius: 0.2vw;
+  border-bottom: 0.3vw solid var(--text-color);
+  transition: border-bottom 0.3s ease-in-out;
+  -webkit-transition: border-bottom 0.3s ease-in-out;
+  -moz-transition: border-bottom 0.3s ease-in-out;
+  -ms-transition: border-bottom 0.3s ease-in-out;
+  -o-transition: border-bottom 0.3s ease-in-out;
+  -webkit-border-radius: 0.2vw;
+  -moz-border-radius: 0.2vw;
+  -ms-border-radius: 0.2vw;
+  -o-border-radius: 0.2vw;
+}
+
+.right_nav {
+  display: flex;
+  flex-direction: row;
+  margin-right: 5vw;
+}
+
+.masuk-daftar a {
+  text-decoration: none;
+  background-color: transparent;
+  border: 0.05vw solid var(--text-color);
+  -webkit-border-radius: 0.2vw;
+  -moz-border-radius: 0.2vw;
+  -ms-border-radius: 0.2vw;
+  -o-border-radius: 0.2vw;
+  border-radius: 0.2vw;
+  background-color: var(--text-color);
+  color: var(--background-color);
+  padding: 1vh;
+  font-weight: bold;
+}
+
+.masuk-daftar a:first-child {
+  border-radius: 0.2vw;
+  background-color: transparent;
+  color: var(--text-color);
+  border: 0.05vh solid var(--text-color);
+  padding: 1vh;
+  -webkit-border-radius: 0.2vw;
+  -moz-border-radius: 0.2vw;
+  -ms-border-radius: 0.2vw;
+  -o-border-radius: 0.2vw;
+}
+
+.masuk-daftar a:first-child:hover {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+.masuk-daftar a:last-child:hover {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.right_nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.profil button {
+  background-color: transparent;
+  color: var(--text-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: var(--font-size);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Dropdown {
+  position: relative;
+}
+
+.Content-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--background-color);
+  border-bottom-left-radius: 0.5vw;
+  z-index: 1;
+  width: 8vw;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
+.Content-dropdown a {
+  display: block;
+  color: var(--text-color);
+  padding: 12px 20px;
+  text-decoration: none;
+  font-size: var(--font-footer);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.Content-dropdown a:hover {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+
+.Dropdown:hover .Content-dropdown {
+  display: block;
+}
+
+footer {
+  border-top: 0.5vw solid var(--text-color);
+  background-color: var(--background-color);
+  min-width: 99;
+}
+
+.copyright p {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--text-color);
+  color: var(--background-color);
+  font-size: var(--font-footer);
+  padding: 1vw;
+  font-weight: bold;
+  bottom: 0;
+}
+
+.content-footer {
+  display: flex;
+  justify-content: center;
+}
+.container-footer {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  padding: 2vw;
+  gap: 10vw;
+}
+
+.container-footer > div {
+  color: var(--text-color);
+}
+
+.container-footer > div h3 {
+  color: var(--text-color);
+  margin-bottom: 1vh;
+  font-size: var(--font-size);
+}
+
+.container-footer > div ul {
+  gap: 0.5vw;
+}
+
+.container-footer > div ul li {
+  list-style-type: none;
+  color: var(--text-color);
+  font-size: var(--font-footer);
+  cursor: pointer;
+}
+
+.sitemap {
+  cursor: pointer;
+}
+
+.desksingkatmyplanet {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  padding: 1vw;
+  color: var(--text-color);
+  width: 40vw;
+}
+
+.desksingkatmyplanet img {
+  width: 8vh;
+  height: auto;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: start;
+  z-index: 9999;
+}
+
+.popup-content {
+  background: linear-gradient(135deg, #4a0072, #2e0147);
+  margin-top: 1vw;
+  padding: 2vw;
+  border-radius: 20px;
+  text-align: center;
+  width: auto;
+  max-width: 80%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  color: var(--text-color);
+  font-family: "Arial", sans-serif;
+  animation: slideDown 0.6s ease-out;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+h1 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.popup-content p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Optional glow effect on popup */
+.popup-content::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  z-index: -1;
+}
+
+.Dropdown2 {
+  display: flex;
+  margin-left: 2vw;
+}
+
+.bandingharga button {
+  background-color: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: var(--font-size);
+  border-bottom: 0.3vw solid transparent;
+}
+
+.Content-dropdown2 {
+  display: none;
+  position: absolute;
+  margin-top: 6vh;
+  background-color: var(--background-color);
+  width: fit-content;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.Content-dropdown2 a {
+  color: var(--text-color);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.Content-dropdown2 a:hover {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+
+.show {
+  display: block;
+}
+
+/* Popup Chat Container */
+.chat-popup {
+  background-color: var(--text-color);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  max-width: 100%;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  z-index: 1000;
+}
+
+/* Header Chat */
+.chat-header {
+  padding: 10px;
+  background-color: var(--text-color);
+  color: var(--background-color);
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px 8px 0 0;
+}
+
+/* Body Chat */
+.chat-body {
+  padding: 15px;
+  max-height: 300px;
+  overflow-y: auto;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Footer Chat */
+.chat-footer {
+  padding: 10px;
+  display: none;
+  align-items: center;
+}
+
+.chat-footer textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+}
+
+/* Tampilkan chat footer ketika berada di chat view */
+.chat-view.active + .chat-footer {
+  display: flex;
+  flex-direction: row;
+}
+
+.chat-footer button {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* Account Card Style */
+.account-card {
+  background-color: var(--text-color);
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect hanya pada keseluruhan card */
+.account-card:hover {
+  background-color: var(--background-color); /* Ubah warna saat hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan saat hover */
+}
+
+/* Pastikan teks di dalam card juga berubah saat card di-hover */
+.account-card:hover h3,
+.account-card:hover p {
+  color: var(--text-color); /* Ganti dengan warna yang diinginkan */
+}
+
+/* Nama Akun dalam Card */
+.account-card h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--background-color);
+}
+
+/* Pesan Terakhir */
+.account-card p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: var(--background-color);
+}
+
+/* Unread Messages Badge */
+.unread-badge {
+  background-color: #ff0000;
+  color: var(--text-color);
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+/* Pesan yang dikirim (Message Sent) */
+.message-sent {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 10px 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  width: fit-content;
+  max-width: 70%;
+  align-self: flex-end;
+  text-align: left;
+  word-wrap: break-word;
+  position: relative;
+}
+
+/* Pesan yang diterima (Message Received) */
+.message-received {
+  background-color: #00c106;
+  color: var(--text-color);
+  padding: 10px 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  width: fit-content;
+  max-width: 70%;
+  align-self: flex-start;
+  text-align: left;
+  word-wrap: break-word;
+  position: relative;
+}
+
+/* Container Pesan */
+#chatMessages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  overflow-y: none;
+  max-height: 400px;
+}
+
+/* Tail atau segitiga kecil di pesan */
+.message-sent:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: var(--background-color) transparent transparent transparent;
+}
+
+.message-received:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #00c106 transparent transparent transparent;
+}
+
+/* Tanggal/Waktu Pesan */
+.message-time {
+  font-size: 0.8em;
+  color: #999;
+  margin-top: 5px;
+  text-align: right;
+}
+
+/* Daftar Chat (Chat List) */
+#chatListContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+/* Custom Scrollbar untuk Chat List */
+#chatListContent::-webkit-scrollbar {
+  width: 5px;
+}
+
+#chatListContent::-webkit-scrollbar-thumb {
+  background-color: var(--background-color);
+  border-radius: 10px;
+}
+
+/* Tombol untuk membuka chat */
+.open-chat-btn {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover Effect untuk Tombol Chat */
+.open-chat-btn:hover {
+  background-color: var(--background-color);
+  transform: scale(1.1);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Active Effect untuk Tombol Chat */
+.open-chat-btn:active {
+  background-color: var(--background-color);
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Icon di dalam tombol chat */
+.open-chat-btn i {
+  pointer-events: none;
+}
+
+/* Gaya untuk tombol Close (closeChatListBtn dan closeChatViewBtn) */
+.close-chat-btn {
+  background-color: transparent; /* Tombol transparan */
+  border: none; /* Hilangkan border */
+  color: #e74c3c; /* Warna merah untuk ikon */
+  font-size: 24px; /* Ukuran ikon */
+  cursor: pointer; /* Kursor menjadi pointer saat hover */
+  padding: 5px; /* Padding kecil untuk spasi di sekitar ikon */
+  transition: transform 0.2s ease, color 0.3s ease; /* Transisi untuk hover */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hover effect untuk tombol Close */
+.close-chat-btn:hover {
+  color: #c0392b; /* Warna merah yang lebih gelap saat di-hover */
+  transform: scale(1.1); /* Membesar sedikit saat di-hover */
+}
+
+/* Active state untuk tombol Close (saat ditekan) */
+.close-chat-btn:active {
+  color: #a93226; /* Warna merah yang lebih tua saat ditekan */
+  transform: scale(0.95); /* Mengecil sedikit saat ditekan */
+}
+
+/* Gaya khusus untuk ikon FontAwesome */
+.close-chat-btn i {
+  pointer-events: none; /* Cegah klik pada ikon, hanya tombol yang merespons */
+}
+
+/* Posisi khusus untuk tombol di dalam header chat */
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: var(--background-color); /* Warna latar belakang biru */
+  color: var(--text-color); /* Warna teks putih */
+  border-radius: 8px 8px 0 0; /* Border atas untuk membuat sudut melengkung */
+}
+
+/* Agar tombol close tetap rapi dalam header */
+.chat-header .close-chat-btn {
+  margin-left: auto; /* Letakkan tombol close di paling kanan */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style dasar untuk tombol */
+#theme-toggle {
+  background-color: var(--background-color); /* Gunakan variabel background */
+  color: var(--text-color); /* Gunakan variabel warna teks */
+  border: none;
+  border-radius: 50%; /* Bentuk tombol menjadi bulat */
+  width: 50px;
+  height: 50px;
+  font-size: 22px; /* Ukuran ikon */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  position: fixed;
+  bottom: 20px; /* Menempatkan tombol di bagian bawah */
+  left: 20px; /* Menempatkan tombol di sebelah kiri */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan */
+}
+
+/* Efek hover untuk tombol */
+#theme-toggle:hover {
+  background-color: #0056b3; /* Ubah warna latar saat hover */
+  transform: scale(1.1); /* Perbesar sedikit saat hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Tambahkan bayangan lebih besar saat hover */
+}
+
+/* Efek active untuk tombol */
+#theme-toggle:active {
+  background-color: #004085; /* Warna saat tombol ditekan */
+  transform: scale(1.05); /* Kurangi sedikit ukurannya saat ditekan */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Bayangan lebih kecil saat tombol ditekan */
+}
+
+/* Ikon Font Awesome dalam tombol */
+#theme-toggle i {
+  pointer-events: none; /* Agar hanya tombol yang bisa di-klik, bukan ikon */
+}
+
+/* Custom CSS for SweetAlert */
+.custom-swal-popup {
+  background-color: #f0f0f0; /* Warna latar belakang popup */
+  border-radius: 15px; /* Membuat sudut popup membulat */
+  padding: 20px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Shadow untuk popup */
+}
+
+.custom-swal-title {
+  font-family: "Arial", sans-serif;
+  font-size: 24px;
+  color: #4caf50; /* Warna judul (hijau untuk sukses) */
+  font-weight: bold;
+}
+
+.custom-swal-text {
+  font-family: "Verdana", sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+.custom-swal-button {
+  background-color: #4caf50; /* Warna tombol */
+  color: white; /* Warna teks tombol */
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: "Arial", sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.custom-swal-button:hover {
+  background-color: #45a049; /* Warna tombol saat hover */
+}
+
+/*================================================================================*/
+
+/* Sidebar Styles */
+aside {
+  margin-top: 2vh;
+  background-color: var(--background-color);
+  padding: 2rem 1rem;
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar_menu button {
+  display: block;
+  background: none;
+  border: none;
+  color: #fff;
+  text-align: left;
+  padding: 15px 10px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  width: 100%;
+}
+
+.sidebar_menu button:hover,
+.sidebar_menu .active {
+  background-color: var(--hover-color);
+  transform: scale(1.05);
+}
+
+/* Main Content Styles */
+.main_content {
+  margin-left: 250px;
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+.content_section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Struktur untuk profil */
+.profile-section {
+  max-width: 800px;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cover-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+}
+
+.cover-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-info {
+  margin-top: -60px;
+  text-align: center;
+}
+
+.profile-photo {
+  border-radius: 50%;
+  border: 5px solid #fff;
+  overflow: hidden;
+  width: 120px;
+  height: 120px;
+}
+
+.profile-picture {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-username h2 {
+  margin: 15px 0 0;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Detail Profil */
+.profile-details {
+  padding: 20px;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.value {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Tombol Edit Profil */
+.edit-button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.edit-profile-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-profile-btn:hover {
+  background-color: #45a049;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cover-photo {
+    height: 150px;
+  }
+
+  .profile-photo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-username h2 {
+    font-size: 20px;
+  }
+}
+
+/* Bagian Umum */
+.form-edit-profile {
+  max-width: 800px;
+  margin: auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.form-section {
+  border: none;
+  padding: 0;
+}
+
+.legend {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #555;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+.profile-preview {
+  margin-top: 10px;
+  width: 100px;
+  height: auto;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Tombol */
+.submit-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+
+/* Responsif */
+@media (min-width: 768px) {
+  .form-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ccc;
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+}
+
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+td img {
+  width: 30px;
+  height: 30px;
+  border-radius: 3px;
+}
+
+.download-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.disabled-btn {
+  background-color: #6c757d;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+}

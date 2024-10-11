@@ -1,0 +1,238 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--input-text-color);
+}
+
+:root {
+  --input-text-color: rgb(98, 41, 164);
+  --input-background: #cccccc;
+  --input-border-radius: 0.5vw;
+  --input-shadow-color: rgba(0, 0, 0, 0.2);
+  --input-tebal-border: 0.2vw;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  max-height: 140vh;
+  gap: 5vw;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1vw;
+}
+
+.slogan p {
+  color: var(--input-background);
+  font-size: 2rem;
+  text-shadow: 10px 10px 8px rgb(0, 0, 0);
+}
+
+.head_hero {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1vw;
+}
+
+.head_hero p {
+  color: var(--input-background);
+  font-size: 3rem;
+  text-shadow: 10px 10px 6px rgb(0, 0, 0);
+}
+
+.head_hero img {
+  width: 8vw;
+  height: auto;
+  object-fit: cover;
+}
+
+.opsi_login-regs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 1vw;
+  gap: 2vw;
+}
+
+.opsi_login-regs button {
+  width: 10vw;
+  height: 3vw;
+  border: none;
+  border-radius: var(--input-border-radius);
+  border: var(--input-tebal-border) solid var(--input-background);
+  background-color: var(--input-text-color);
+  color: var(--input-background);
+  font-weight: bold;
+  font-size: 1.5em;
+  text-shadow: 10px 10px 8px rgb(0, 0, 0);
+  -webkit-border-radius: var(--input-border-radius);
+  -moz-border-radius: var(--input-border-radius);
+  -ms-border-radius: var(--input-border-radius);
+  -o-border-radius: var(--input-border-radius);
+}
+
+.opsi_login-regs button:hover {
+  background-color: var(--input-background);
+  color: var(--input-text-color);
+  border: 0.1vw solid var(--input-text-color);
+}
+
+#formDaftar {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: start;
+}
+
+#formMasuk {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: start;
+}
+
+.form_user,
+.form_regs_user {
+  padding: 1vw;
+  background-color: var(--input-background);
+  border-radius: var(--input-border-radius);
+  box-shadow: 10px 10px 8px rgb(0, 0, 0);
+  -webkit-border-radius: var(--input-border-radius);
+  -moz-border-radius: var(--input-border-radius);
+  -ms-border-radius: var(--input-border-radius);
+  -o-border-radius: var(--input-border-radius);
+}
+
+.form_user h2,
+.form_regs_user h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--input-text-color);
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.inputdata,
+.input_account {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputdata select,
+.inputdata label {
+  font-size: 1rem;
+  color: var(--input-text-color);
+  margin-top: 1vw;
+}
+
+.input_account label {
+  font-size: 1.4rem;
+  color: var(--input-text-color);
+  margin-top: 1vw;
+}
+
+.inputdata select,
+.inputdata input,
+.reg_sso button {
+  padding: 1vw;
+  color: var(--input-text-color);
+  font-size: 1rem;
+}
+
+.input_account input {
+  padding: 1vw;
+  color: var(--input-text-color);
+  font-size: 1.4rem;
+}
+
+.inputdata select,
+.inputdata input,
+.reg_sso button,
+.input_account input {
+  border-radius: var(--input-border-radius);
+  border: var(--input-tebal-border) solid var(--input-text-color);
+  -webkit-border-radius: var(--input-border-radius);
+  -moz-border-radius: var(--input-border-radius);
+  -ms-border-radius: var(--input-border-radius);
+  -o-border-radius: var(--input-border-radius);
+}
+
+.inputdata input:nth-child(11),
+.input_account input:last-child {
+  margin-top: 1vw;
+  font-weight: bold;
+}
+
+.inputdata input:nth-child(11),
+.reg_sso button,
+.input_account input:last-child {
+  text-align: center;
+  background-color: var(--input-text-color);
+  color: var(--input-background);
+  margin-bottom: 0.5vw;
+}
+
+.inputdata input:nth-child(11):hover,
+.reg_sso button:hover,
+.input_account input:last-child:hover {
+  background-color: var(--input-background);
+  color: var(--input-text-color);
+}
+
+.reg_sso button {
+  margin-top: 0.6vw;
+  padding: 0.8vw;
+  border-radius: var(--input-border-radius);
+  -webkit-border-radius: var(--input-border-radius);
+  -moz-border-radius: var(--input-border-radius);
+  -ms-border-radius: var(--input-border-radius);
+  -o-border-radius: var(--input-border-radius);
+}
+
+.fa-brands {
+  font-size: 1em;
+}
+
+.regs_forget-password {
+  display: flex;
+  flex-direction: row;
+  gap: 4.4vw;
+}
+
+p {
+  text-align: center;
+  color: var(--input-text-color);
+  font-size: 1rem;
+}
+
+.reg_sso {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1vw;
+}
+
+.inputdata select option {
+  color: var(--input-text-color);
+}
+

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container1">
+        <h3>CheckOut</h3>
+
+        <div class="content-payment-gateway">
+          <h4>Informasi Pengiriman</h4>
+
+          <div class="informasi-user">
+            <div class="form-group">
+              <label for="nama">Nama Lengkap</label>
+              <input type="text" id="nama" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label for="no_hp">No. HP</label>
+              <input type="text" id="no_hp" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label for="tanggal_layanan">Pilih Tanggal Layanan</label>
+              <input type="date" name="" id="" />
+            </div>
+            <div class="form-group">
+              <label for="alamat">Alamat Pengiriman</label>
+              <textarea name="" id=""></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="payment-container">
+          <h4>Pembayaran</h4>
+
+          <div class="select-container">
+            <label for="paymentOption">Pilih Opsi Pembayaran</label>
+            <select id="paymentOption" class="custom-select">
+              <option>DP - Rp. 5.000.000</option>
+              <option>Pelunasan - Rp. 15.000.000</option>
+            </select>
+          </div>
+
+          <div class="select-container">
+            <label for="paymentMethod">Metode Pembayaran</label>
+            <div class="payment-method-options">
+              <button class="payment-method">
+                <i class="icon-wallet"></i> E-Wallet
+              </button>
+              <button class="payment-method">
+                <i class="icon-bank"></i> Transfer Bank
+              </button>
+              <button class="payment-method">
+                <i class="icon-credit"></i> Kartu Kredit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container2">
+        <div class="order-details">
+          <h4>Detail Pesanan</h4>
+
+          <div class="package-details">
+            <img
+              src="path/to/your/image.jpg"
+              alt="Paket Premium"
+              class="package-image"
+            />
+            <div class="package-info">
+              <h5 class="package-name">Paket Premium</h5>
+              <p class="package-description">
+                Semua yang Anda butuhkan dari awal hingga akhir.
+              </p>
+              <p class="package-price">Rp. 25.000.000</p>
+            </div>
+          </div>
+
+          <div class="price-details">
+            <div class="price-item">
+              <span>Harga Asli</span>
+              <span>Rp. 25.000.000</span>
+            </div>
+            <div class="price-item">
+              <span>DP</span>
+              <span>Rp. 5.000.000</span>
+            </div>
+            <div class="price-item">
+              <span>Subtotal</span>
+              <span>Rp. 5.000.000</span>
+            </div>
+            <div class="price-item">
+              <span>Lainnya</span>
+              <span>Rp. 0</span>
+            </div>
+            <div class="price-item total">
+              <span>Total</span>
+              <span>Rp. 5.000.000</span>
+            </div>
+          </div>
+
+          <p class="terms">
+            Dengan menyelesaikan pembelian Anda, Anda menyetujui persyaratan
+            layanan ini
+          </p>
+
+          <button class="btn-pay">Bayar Sekarang</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

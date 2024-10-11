@@ -1,0 +1,1265 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, var(--background-color), #2e0147);
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--background-color);
+  min-width: 100vw;
+  height: 10vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  border-bottom: 0.5vw solid var(--text-color);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10vh;
+  overflow-x: hidden;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+:root {
+  --text-color: #ffffff; /* Dark theme */
+  --background-color: #3c025d;
+  --border-color: #7e7e7e;
+  --font-size: 1.3em;
+  --font-footer: 1em;
+  --hover-color: #540184;
+}
+
+.dark-theme {
+  --text-color: #3c025d; /* Light theme */
+  --background-color: #ffffff;
+  --border-color: #dddddd;
+  --hover-color: #b0afaf;
+}
+.left_nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+}
+
+.logo a {
+  text-decoration: none;
+  font-size: var(--font-size);
+  color: var(--text-color);
+}
+
+.mid_nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.logo img {
+  background-color: #3c025d;
+  width: 2.5vw;
+  height: auto;
+  padding: 0.3vw;
+  border-radius: 0.5vw;
+  -webkit-border-radius: 0.5vw;
+  -moz-border-radius: 0.5vw;
+  -ms-border-radius: 0.5vw;
+  -o-border-radius: 0.5vw;
+}
+
+.mid_nav ul {
+  display: flex;
+  flex-direction: row;
+  gap: 2vw;
+}
+
+.mid_nav ul li {
+  display: flex;
+  list-style-type: none;
+  color: var(--text-color);
+  font-size: var(--font-size);
+}
+
+.mid_nav ul li a {
+  color: var(--text-color);
+  text-decoration: none;
+  border-bottom: 0.3vw solid transparent;
+}
+
+.bandingharga button:hover,
+.mid_nav ul li a:hover {
+  border-radius: 0.2vw;
+  border-bottom: 0.3vw solid var(--text-color);
+  transition: border-bottom 0.3s ease-in-out;
+  -webkit-transition: border-bottom 0.3s ease-in-out;
+  -moz-transition: border-bottom 0.3s ease-in-out;
+  -ms-transition: border-bottom 0.3s ease-in-out;
+  -o-transition: border-bottom 0.3s ease-in-out;
+  -webkit-border-radius: 0.2vw;
+  -moz-border-radius: 0.2vw;
+  -ms-border-radius: 0.2vw;
+  -o-border-radius: 0.2vw;
+}
+
+.right_nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.masuk-daftar a {
+  text-decoration: none;
+  background-color: transparent;
+  border: 0.05vw solid var(--text-color);
+  -webkit-border-radius: 0.2vw;
+  -moz-border-radius: 0.2vw;
+  -ms-border-radius: 0.2vw;
+  -o-border-radius: 0.2vw;
+  border-radius: 0.2vw;
+  background-color: var(--text-color);
+  color: var(--background-color);
+  padding: 1vh;
+  font-weight: bold;
+}
+
+.masuk-daftar a:first-child {
+  border-radius: 0.2vw;
+  background-color: transparent;
+  color: var(--text-color);
+  border: 0.05vh solid var(--text-color);
+  padding: 1vh;
+  -webkit-border-radius: 0.2vw;
+  -moz-border-radius: 0.2vw;
+  -ms-border-radius: 0.2vw;
+  -o-border-radius: 0.2vw;
+}
+
+.masuk-daftar a:first-child:hover {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+.masuk-daftar a:last-child:hover {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.right_nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.profil button {
+  background-color: transparent;
+  color: var(--text-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: var(--font-size);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Dropdown {
+  position: relative;
+}
+
+.Content-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--background-color);
+  border-bottom-left-radius: 0.5vw;
+  z-index: 1;
+  width: 8vw;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
+.Content-dropdown a {
+  display: block;
+  color: var(--text-color);
+  padding: 12px 20px;
+  text-decoration: none;
+  font-size: var(--font-footer);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.Content-dropdown a:hover {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+
+.Dropdown:hover .Content-dropdown {
+  display: block;
+}
+
+footer {
+  border-top: 0.5vw solid var(--text-color);
+  background-color: var(--background-color);
+  min-width: 99;
+}
+
+.copyright p {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--text-color);
+  color: var(--background-color);
+  font-size: var(--font-footer);
+  padding: 1vw;
+  font-weight: bold;
+  bottom: 0;
+}
+
+.content-footer {
+  display: flex;
+  justify-content: center;
+}
+.container-footer {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  padding: 2vw;
+  gap: 10vw;
+}
+
+.container-footer > div {
+  color: var(--text-color);
+}
+
+.container-footer > div h3 {
+  color: var(--text-color);
+  margin-bottom: 1vh;
+  font-size: var(--font-size);
+}
+
+.container-footer > div ul {
+  gap: 0.5vw;
+}
+
+.container-footer > div ul li {
+  list-style-type: none;
+  color: var(--text-color);
+  font-size: var(--font-footer);
+  cursor: pointer;
+}
+
+.sitemap {
+  cursor: pointer;
+}
+
+.desksingkatmyplanet {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  padding: 1vw;
+  color: var(--text-color);
+  width: 40vw;
+}
+
+.desksingkatmyplanet img {
+  width: 8vh;
+  height: auto;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: start;
+  z-index: 9999;
+}
+
+.popup-content {
+  background: linear-gradient(135deg, #4a0072, #2e0147);
+  margin-top: 1vw;
+  padding: 2vw;
+  border-radius: 20px;
+  text-align: center;
+  width: auto;
+  max-width: 80%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  color: var(--text-color);
+  font-family: "Arial", sans-serif;
+  animation: slideDown 0.6s ease-out;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+h1 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.popup-content p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Optional glow effect on popup */
+.popup-content::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  z-index: -1;
+}
+
+.Dropdown2 {
+  display: flex;
+  margin-left: 2vw;
+}
+
+.bandingharga button {
+  background-color: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: var(--font-size);
+  border-bottom: 0.3vw solid transparent;
+}
+
+.Content-dropdown2 {
+  display: none;
+  position: absolute;
+  margin-top: 6vh;
+  background-color: var(--background-color);
+  width: fit-content;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.Content-dropdown2 a {
+  color: var(--text-color);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.Content-dropdown2 a:hover {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+
+.show {
+  display: block;
+}
+
+/* Popup Chat Container */
+.chat-popup {
+  background-color: var(--text-color);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  max-width: 100%;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  z-index: 1000;
+}
+
+/* Header Chat */
+.chat-header {
+  padding: 10px;
+  background-color: var(--text-color);
+  color: var(--background-color);
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px 8px 0 0;
+}
+
+/* Body Chat */
+.chat-body {
+  padding: 15px;
+  max-height: 300px;
+  overflow-y: auto;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Footer Chat */
+.chat-footer {
+  padding: 10px;
+  display: none;
+  align-items: center;
+}
+
+.chat-footer textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+}
+
+/* Tampilkan chat footer ketika berada di chat view */
+.chat-view.active + .chat-footer {
+  display: flex;
+  flex-direction: row;
+}
+
+.chat-footer button {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* Account Card Style */
+.account-card {
+  background-color: var(--text-color);
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect hanya pada keseluruhan card */
+.account-card:hover {
+  background-color: var(--background-color); /* Ubah warna saat hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan saat hover */
+}
+
+/* Pastikan teks di dalam card juga berubah saat card di-hover */
+.account-card:hover h3,
+.account-card:hover p {
+  color: var(--text-color); /* Ganti dengan warna yang diinginkan */
+}
+
+/* Nama Akun dalam Card */
+.account-card h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--background-color);
+}
+
+/* Pesan Terakhir */
+.account-card p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: var(--background-color);
+}
+
+/* Unread Messages Badge */
+.unread-badge {
+  background-color: #ff0000;
+  color: var(--text-color);
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+/* Pesan yang dikirim (Message Sent) */
+.message-sent {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 10px 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  width: fit-content;
+  max-width: 70%;
+  align-self: flex-end;
+  text-align: left;
+  word-wrap: break-word;
+  position: relative;
+}
+
+/* Pesan yang diterima (Message Received) */
+.message-received {
+  background-color: #00c106;
+  color: var(--text-color);
+  padding: 10px 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  width: fit-content;
+  max-width: 70%;
+  align-self: flex-start;
+  text-align: left;
+  word-wrap: break-word;
+  position: relative;
+}
+
+/* Container Pesan */
+#chatMessages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  overflow-y: none;
+  max-height: 400px;
+}
+
+/* Tail atau segitiga kecil di pesan */
+.message-sent:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: var(--background-color) transparent transparent transparent;
+}
+
+.message-received:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #00c106 transparent transparent transparent;
+}
+
+/* Tanggal/Waktu Pesan */
+.message-time {
+  font-size: 0.8em;
+  color: #999;
+  margin-top: 5px;
+  text-align: right;
+}
+
+/* Daftar Chat (Chat List) */
+#chatListContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+/* Custom Scrollbar untuk Chat List */
+#chatListContent::-webkit-scrollbar {
+  width: 5px;
+}
+
+#chatListContent::-webkit-scrollbar-thumb {
+  background-color: var(--background-color);
+  border-radius: 10px;
+}
+
+/* Tombol untuk membuka chat */
+.open-chat-btn {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: 0.2vw solid var(--text-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  position: fixed;
+  bottom: 20px;
+  left: 9vw;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover Effect untuk Tombol Chat */
+.open-chat-btn:hover {
+  background-color: var(--background-color);
+  transform: scale(1.1);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Active Effect untuk Tombol Chat */
+.open-chat-btn:active {
+  background-color: var(--background-color);
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Icon di dalam tombol chat */
+.open-chat-btn i {
+  pointer-events: none;
+}
+
+/* Gaya untuk tombol Close (closeChatListBtn dan closeChatViewBtn) */
+.close-chat-btn {
+  background-color: transparent; /* Tombol transparan */
+  border: none; /* Hilangkan border */
+  color: #e74c3c; /* Warna merah untuk ikon */
+  font-size: 24px; /* Ukuran ikon */
+  cursor: pointer; /* Kursor menjadi pointer saat hover */
+  padding: 5px; /* Padding kecil untuk spasi di sekitar ikon */
+  transition: transform 0.2s ease, color 0.3s ease; /* Transisi untuk hover */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hover effect untuk tombol Close */
+.close-chat-btn:hover {
+  color: #c0392b; /* Warna merah yang lebih gelap saat di-hover */
+  transform: scale(1.1); /* Membesar sedikit saat di-hover */
+}
+
+/* Active state untuk tombol Close (saat ditekan) */
+.close-chat-btn:active {
+  color: #a93226; /* Warna merah yang lebih tua saat ditekan */
+  transform: scale(0.95); /* Mengecil sedikit saat ditekan */
+}
+
+/* Gaya khusus untuk ikon FontAwesome */
+.close-chat-btn i {
+  pointer-events: none; /* Cegah klik pada ikon, hanya tombol yang merespons */
+}
+
+/* Posisi khusus untuk tombol di dalam header chat */
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: var(--background-color); /* Warna latar belakang biru */
+  color: var(--text-color); /* Warna teks putih */
+  border-radius: 8px 8px 0 0; /* Border atas untuk membuat sudut melengkung */
+}
+
+/* Agar tombol close tetap rapi dalam header */
+.chat-header .close-chat-btn {
+  margin-left: auto; /* Letakkan tombol close di paling kanan */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style dasar untuk tombol */
+#theme-toggle {
+  background-color: var(--background-color); /* Gunakan variabel background */
+  color: var(--text-color); /* Gunakan variabel warna teks */
+  border: 0.2vw solid var(--text-color);
+  border-radius: 50%; /* Bentuk tombol menjadi bulat */
+  width: 50px;
+  height: 50px;
+  font-size: 22px; /* Ukuran ikon */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  position: fixed;
+  bottom: 20px; /* Menempatkan tombol di bagian bawah */
+  left: 5vw; /* Menempatkan tombol di sebelah kiri */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan */
+}
+
+/* Efek hover untuk tombol */
+#theme-toggle:hover {
+  background-color: #0056b3; /* Ubah warna latar saat hover */
+  transform: scale(1.1); /* Perbesar sedikit saat hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Tambahkan bayangan lebih besar saat hover */
+}
+
+/* Efek active untuk tombol */
+#theme-toggle:active {
+  background-color: #004085; /* Warna saat tombol ditekan */
+  transform: scale(1.05); /* Kurangi sedikit ukurannya saat ditekan */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Bayangan lebih kecil saat tombol ditekan */
+}
+
+/* Ikon Font Awesome dalam tombol */
+#theme-toggle i {
+  pointer-events: none; /* Agar hanya tombol yang bisa di-klik, bukan ikon */
+}
+
+#openCartBtn {
+  background-color: transparent;
+  color: var(--text-color);
+  border: none; /* Menghapus border */
+  border-radius: 50%; /* Membuat tombol bulat */
+  width: 50px; /* Lebar tombol */
+  height: 50px; /* Tinggi tombol */
+  font-size: 22px; /* Ukuran ikon */
+  display: flex; /* Flexbox untuk memposisikan ikon */
+  justify-content: center; /* Pusatkan ikon secara horizontal */
+  align-items: center; /* Pusatkan ikon secara vertikal */
+  cursor: pointer; /* Menambahkan pointer saat di-hover */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Animasi transisi */
+}
+
+/* Efek hover untuk tombol */
+#openCartBtn:hover {
+  background-color: transparent; /* Ganti warna saat hover */
+  transform: scale(1.1); /* Perbesar sedikit saat hover */
+}
+
+/* Efek active untuk tombol */
+#openCartBtn:active {
+  background-color: var(--background-color); /* Ganti warna saat tombol aktif */
+  color: var(--text-color);
+  transform: scale(1.05); /* Sedikit mengecil saat tombol diklik */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Kurangi bayangan saat tombol ditekan */
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+  #openCartBtn {
+    width: 40px; /* Kurangi ukuran tombol untuk layar kecil */
+    height: 40px;
+    font-size: 18px; /* Kurangi ukuran ikon */
+    bottom: 15px; /* Kurangi jarak dari bawah */
+    right: 15px; /* Kurangi jarak dari kanan */
+  }
+}
+/* Style dasar untuk popup keranjang */
+#cart-popup {
+  background-color: var(--background-color); /* Latar belakang putih */
+  border-radius: 10px; /* Membuat sudut membulat */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+  width: fit-content; /* Lebar popup */
+  min-width: 20vw;
+  max-width: 90%; /* Responsif untuk layar kecil */
+  height: fit-content;
+  padding: 20px; /* Padding di dalam popup */
+  position: fixed; /* Popup akan tetap di posisi */
+  top: 50%; /* Posisikan di tengah vertikal */
+  left: 50%; /* Posisikan di tengah horizontal */
+  transform: translate(-50%, -50%); /* Untuk mengatur posisi tengah */
+  z-index: 1000; /* Agar berada di atas elemen lain */
+  display: none; /* Tersembunyi secara default */
+  overflow: scroll; /* Aktifkan scroll jika tinggi konten melebihi batas */
+  scrollbar-width: none; /* Hilangkan scrollbar pada Firefox */
+}
+
+#cart-popup::-webkit-scrollbar {
+  display: none; /* Hilangkan scrollbar pada Chrome, Safari, Opera */
+}
+
+/* Style untuk judul popup */
+#cart-popup h3 {
+  font-size: 20px; /* Ukuran font untuk judul */
+  margin-bottom: 20px; /* Jarak antara judul dan isi */
+  color: var(--text-color); /* Warna teks */
+}
+
+.cart-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--text-color);
+  margin: 0.6vw;
+  padding: 1vw;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  overflow-y: scroll; /* Aktifkan scroll jika tinggi konten melebihi batas */
+  scrollbar-width: none; /* Hilangkan scrollbar pada Firefox */
+}
+
+.vendor-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  margin-right: 20px;
+  margin-bottom: 0.5vw;
+}
+
+.vendor-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}
+
+.vendor-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--background-color);
+}
+
+.cart-image {
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
+  border: 0.2vw solid var(--background-color);
+}
+
+.cart-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5vw;
+  margin: 0.5vw;
+  border: 0.2vw solid var(--background-color);
+  border-radius: 0.5vw;
+  -webkit-border-radius: 0.5vw;
+  -moz-border-radius: 0.5vw;
+  -ms-border-radius: 0.5vw;
+  -o-border-radius: 0.5vw;
+  background-color: var(--hover-color);
+}
+
+.cart-details p {
+  color: var(--text-color);
+}
+
+.quantity-value {
+  min-width: 30px; /* Agar angka memiliki lebar minimum */
+  text-align: center; /* Menengahkan teks */
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#card-items button {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+
+/* Style untuk item dalam keranjang */
+#cart-items {
+  max-height: 150px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  color: var(--text-color);
+  overflow-y: auto; /* Aktifkan scroll jika tinggi konten melebihi batas */
+}
+
+/* Custom scrollbar untuk browser berbasis WebKit (Chrome, Safari, Edge, Opera) */
+#cart-items::-webkit-scrollbar {
+  width: 8px; /* Lebar scrollbar */
+  background-color: white; /* Latar belakang scrollbar */
+  border-radius: 10px; /* Membuat sudut scrollbar melengkung */
+}
+
+#cart-items::-webkit-scrollbar-thumb {
+  background-color: rgb(255, 253, 253); /* Warna thumb scrollbar */
+  border-radius: 10px; /* Membuat sudut scrollbar melengkung */
+}
+
+#cart-items::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.7
+  ); /* Warna saat hover di scrollbar */
+}
+
+#cart-items::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255); /* Warna track (area di belakang scrollbar) */
+  border-radius: 10px; /* Membuat sudut track melengkung */
+}
+
+/* Custom scrollbar untuk Firefox */
+#cart-items {
+  scrollbar-width: thin; /* Scrollbar lebih tipis */
+  scrollbar-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.1); /* Warna thumb dan track */
+}
+
+/* Hover effect untuk scrollbar pada Firefox */
+#cart-items:hover {
+  scrollbar-color: rgba(255, 255, 255, 0.7) rgba(255, 255, 255, 0.1); /* Warna saat hover */
+}
+
+/* Style tombol-tombol di dalam popup */
+#cart-popup button {
+  background-color: var(--text-color); /* Warna dasar biru */
+  color: var(--background-color); /* Warna teks putih */
+  border: none; /* Hilangkan border */
+  padding: 10px 15px; /* Padding tombol */
+  border-radius: 5px; /* Sudut membulat pada tombol */
+  cursor: pointer; /* Ganti cursor saat hover */
+  margin-right: 10px; /* Jarak antar tombol */
+  font-size: 14px; /* Ukuran font tombol */
+  transition: background-color 0.3s ease; /* Transisi perubahan warna */
+}
+
+#cart-popup .remove-btn,
+#cart-popup .quantity-btn {
+  background-color: var(--background-color); /* Warna dasar biru */
+  color: var(--text-color); /* Warna teks putih */
+  border: none; /* Hilangkan border */
+  padding: 10px 15px; /* Padding tombol */
+  border-radius: 5px; /* Sudut membulat pada tombol */
+  cursor: pointer; /* Ganti cursor saat hover */
+  margin-top: 1vw;
+  margin-right: 10px; /* Jarak antar tombol */
+  font-size: 14px; /* Ukuran font tombol */
+  transition: background-color 0.3s ease; /* Transisi perubahan warna */
+}
+
+#cart-popup button:hover {
+  background-color: var(--hover-color);
+  color: var(--text-color);
+}
+
+/* Style khusus untuk tombol close dengan ikon di pojok kanan atas */
+#cart-popup .close-btn {
+  background-color: transparent; /* Latar belakang transparan */
+  color: red; /* Warna ikon close */
+  padding: 0; /* Hilangkan padding */
+  font-size: 20px; /* Ukuran font ikon close */
+  position: absolute; /* Posisi tombol close */
+  top: 10px; /* Jarak dari atas */
+  right: 10px; /* Jarak dari kanan */
+  cursor: pointer; /* Ganti cursor saat hover */
+  border: none; /* Hilangkan border */
+}
+
+/* Ikon close dalam tombol */
+#cart-popup .close-btn i {
+  font-size: 24px; /* Ukuran ikon close */
+}
+
+@media (max-width: 768px) {
+  #cart-popup {
+    width: 90%;
+    max-height: 70%;
+    overflow-y: auto;
+  }
+}
+
+/* Gaya untuk overlay popup */
+.search-overlay {
+  display: none; /* Awalnya tersembunyi */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Latar belakang hitam transparan */
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Gaya untuk kotak popup */
+.search-popup {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+}
+
+/* Gaya input pencarian */
+.search-popup input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Gaya tombol cari */
+.search-popup button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.search-popup button:hover {
+  background-color: #0056b3;
+}
+
+/* Gaya untuk tombol tutup */
+.close-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 50%;
+  font-size: 16px;
+}
+
+/* Gaya animasi untuk transisi popup */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.search-overlay {
+  animation: fadeIn 0.3s ease;
+}
+
+/* CSS Custom untuk SweetAlert */
+
+/* Warna background untuk alert box */
+.swal2-popup {
+  background-color: #f4f4f9 !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+}
+
+/* Warna untuk judul alert */
+.swal2-title {
+  color: #2c3e50 !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+}
+
+/* Warna untuk teks deskripsi dalam alert */
+.swal2-html-container {
+  color: #555 !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 16px !important;
+}
+
+/* Style untuk tombol konfirmasi */
+.swal2-confirm {
+  background-color: #3085d6 !important;
+  border: none !important;
+  border-radius: 8px !important;
+  color: #fff !important;
+  padding: 10px 20px !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 14px !important;
+  transition: background-color 0.3s ease;
+}
+
+/* Style saat tombol hover */
+.swal2-confirm:hover {
+  background-color: #1d6ea0 !important;
+}
+
+/* Style untuk tombol batal */
+.swal2-cancel {
+  background-color: #d33 !important;
+  border: none !important;
+  border-radius: 8px !important;
+  color: #fff !important;
+  padding: 10px 20px !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 14px !important;
+  transition: background-color 0.3s ease;
+}
+
+/* Style saat tombol batal di hover */
+.swal2-cancel:hover {
+  background-color: #b71f1f !important;
+}
+
+/* Ukuran ikon alert */
+.swal2-icon.swal2-warning {
+  font-size: 50px !important;
+  color: #f39c12 !important;
+}
+
+
+
+
+
+
+
+/*========================================================================================================================================================*/
+
+
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 5vh 5vw 5vw 5vw;
+  background-color: var(--background-color);
+  border: 0.2vw solid va;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Layout untuk product details dan customer details */
+.payment-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: var(--background-color);
+  border: 0.08vw solid var(--text-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.customer-details,
+.product-details {
+  border: 0.05vw solid var(--text-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-details {
+  width: 60%;
+  background-color: var(--background-color);
+  padding-right: 20px;
+}
+
+.customer-details {
+  width: 35%;
+  background-color: var(--background-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: var(--text-color);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid var(--hover-color);
+  text-align: left;
+}
+
+th {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+td {
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+td:last-child {
+  font-weight: bold;
+}
+
+.payment-total {
+  text-align: right;
+  font-size: 18px;
+  font-weight: bold;
+  color: #28a745;
+}
+
+#pay-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+#pay-button:hover {
+  background-color: #218838;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  .payment-section {
+    flex-direction: column;
+  }
+
+  .product-details,
+  .customer-details {
+    width: 100%;
+    padding-right: 0;
+  }
+
+  #pay-button {
+    font-size: 16px;
+    padding: 12px;
+  }
+}

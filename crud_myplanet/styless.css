@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.hero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1vw;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    padding: 20px;
+    color: #007bff;
+    border-right: 2px solid #020f72;
+    background-color: #969696;
+}
+
+.sidebar p {
+    font-weight: bold;
+    cursor: pointer;
+    color: #333; /* Warna teks default */
+    border-bottom: 2px solid transparent; /* Batas default */
+    transition: color 0.3s ease, border-bottom 0.3s ease; /* Animasi transisi */
+}
+
+.sidebar p:hover {
+    color: #020f72; /* Warna teks saat hover */
+    border-bottom: 2px solid #020f72; /* Batas saat hover */
+}
+
+
+.container{
+    display: flex;
+    margin: 1vw;
+    flex-direction: row;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+#user{
+    display: none;
+    flex-direction: column;
+}
+
+#produk{
+    display: none;
+    flex-direction: column;
+}
+
+#images{
+    display: none;
+    flex-direction: column;
+}
+
+.content{
+    overflow-y: auto;  /* Mengaktifkan scroll vertikal */
+    margin: 1vw;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1vw;
+    font-size: 18px;
+    text-align: left;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+/* Gaya untuk header tabel */
+th, td {
+    padding: 16px 20px;
+}
+
+th {
+    background-color: #364fc7;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+/* Gaya untuk baris tabel */
+tr {
+    border-bottom: 1px solid #dddddd;
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* Gaya untuk baris tabel bergantian */
+tr:nth-of-type(even) {
+    background-color: #f8f9fa;
+}
+
+/* Gaya hover untuk baris tabel */
+tr:hover {
+    background-color: #edf2ff;
+}
+
+/* Gaya untuk sel tabel */
+td {
+    color: #495057;
+}
+
+/* Gaya untuk tautan */
+a {
+    color: #364fc7;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: #f1f3f5;
+    border: 1px solid #364fc7;
+}
+
+/* Gaya hover untuk tautan */
+a:hover {
+    background-color: #364fc7;
+    color: #ffffff;
+}
