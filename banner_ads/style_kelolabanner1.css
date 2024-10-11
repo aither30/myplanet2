@@ -1,0 +1,123 @@
+body { 
+    font-family: Arial, sans-serif; 
+    background-color: #f4f6f9; 
+    margin: 0; 
+    padding: 0;
+}
+.container {
+    max-width: 1100px; 
+    margin: 40px auto;
+    padding: 20px; 
+    background-color: white; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #2c3e50;
+}
+.info {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #34495e;
+}
+.info strong {
+    color: #27ae60;
+}
+.btn {
+    display: inline-block;
+    padding: 10px 25px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn:hover {
+    background-color: #2980b9;
+}
+.btn:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+.form-container {
+    display: none;
+    margin-bottom: 40px;
+}
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+label {
+    font-size: 16px;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    display: block;
+}
+input[type="text"], input[type="file"], textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #2c3e50;
+}
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+.table-container {
+    overflow-x: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+th, td {
+    border: 1px solid #ecf0f1;
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+}
+th {
+    background-color: #ecf0f1;
+    color: #34495e;
+}
+td img {
+    max-width: 80px;
+    height: auto;
+    border-radius: 5px;
+}
+.action-buttons a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #2980b9;
+}
+.action-buttons a:hover {
+    color: #3498db;
+}
+.btn-back {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #2c3e50;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    width: 200px;
+}
+.btn-back:hover {
+    background-color: #34495e;
+}
+.hidden {
+    display: none;
+}

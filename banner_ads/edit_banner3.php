@@ -1,25 +1,30 @@
 <?php
 include ("../config/config.php");
 
-// Mengambil ID banner dari URL
+$success = false; // Variabel untuk melacak apakah pembaruan berhasil
+
+// Mengambil ID banner dari URL, dan pastikan ID valid
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
+
+    // Query untuk mengambil data banner berdasarkan ID
     $sql = "SELECT * FROM banner_ads WHERE banner_id = $id";
     $result = $koneksi->query($sql);
 
+    // Periksa apakah data ditemukan
     if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
+        $row = $result->fetch_assoc(); // Ambil data sebagai array
     } else {
         echo "<script>
                 alert('Data banner tidak ditemukan.');
-                window.location.href = 'kelola_banner1.php';
+                window.location.href = 'kelola_banner3.php';
               </script>";
         exit;
     }
 } else {
     echo "<script>
             alert('ID tidak ditemukan.');
-            window.location.href = 'kelola_banner1.php';
+            window.location.href = 'kelola_banner3.php';
           </script>";
     exit;
 }
@@ -42,9 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             WHERE banner_id = $id";
 
     if ($koneksi->query($sql) === TRUE) {
-        $iklan_berhasil = true; // Tandai berhasil
+        $success = true; // Tandai bahwa pembaruan berhasil
     } else {
-        $pesan_error = "Error: " . $koneksi->error;
+        $success = false; // Tandai bahwa pembaruan gagal
+        $error_message = $koneksi->error; // Simpan pesan error
     }
 }
 ?>
@@ -55,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Iklan</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -155,36 +162,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form>
 
     <div class="back-button">
-        <a href="kelola_banner1.php">Kembali</a>
+        <a href="kelola_banner3.php">Kembali</a>
     </div>
 </div>
 
-<!-- SweetAlert Script -->
-<?php if (isset($iklan_berhasil) && $iklan_berhasil): ?>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    Swal.fire({
-        title: 'Berhasil!',
-        text: 'Data iklan berhasil diperbarui.',
-        icon: 'success',
-        confirmButtonText: 'OK'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = 'kelola_banner1.php';
-        }
-    });
-</script>
-<?php elseif (isset($pesan_error)): ?>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    Swal.fire({
-        title: 'Gagal!',
-        text: '<?php echo $pesan_error; ?>',
-        icon: 'error',
-        confirmButtonText: 'OK'
-    });
-</script>
-<?php endif; ?>
+<?php
+// Tampilkan SweetAlert tergantung hasil pembaruan
+if ($success) {
+    echo "<script>
+        Swal.fire({
+            title: 'Berhasil!',
+            text: 'Data iklan berhasil diperbarui.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'kelola_banner3.php';
+            }
+        });
+    </script>";
+} elseif (isset($error_message)) {
+    echo "<script>
+        Swal.fire({
+            title: 'Gagal!',
+            text: 'Error: $error_message',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+    </script>";
+}
+?>
 
 </body>
 </html>

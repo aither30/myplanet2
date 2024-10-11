@@ -7,6 +7,9 @@ $sql = "SELECT * FROM banner_ads WHERE banner_id = $id";
 $result = $koneksi->query($sql);
 $row = $result->fetch_assoc();
 
+// Variabel untuk menentukan apakah update berhasil
+$update_success = false;
+
 // Memperbarui data jika form disubmit
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $image_url = $_POST['image_url'];
@@ -24,9 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             WHERE banner_id = $id";
 
     if ($koneksi->query($sql) === TRUE) {
-        echo "Data iklan berhasil diperbarui.";
+        // Jika update berhasil
+        $update_success = true;
     } else {
-        echo "Error: " . $sql . "<br>" . $koneksi->error;
+        // Jika gagal update
+        $update_success = false;
+        $error_message = $koneksi->error;
     }
 }
 ?>
@@ -37,31 +43,134 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Iklan</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        label {
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: block;
+            color: #333;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        textarea {
+            resize: none;
+            height: 120px;
+        }
+        button {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 16px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .back-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        .back-button a:hover {
+            background-color: #555;
+        }
+    </style>
 </head>
 <body>
 
-<h2>Edit Iklan Banner</h2>
+<div class="container">
+    <h2>Edit Iklan Banner</h2>
 
-<form method="POST">
-    <label>URL Gambar:</label><br>
-    <input type="text" name="image_url" value="<?php echo $row['image_url']; ?>" required><br><br>
-    
-    <label>Judul Iklan:</label><br>
-    <input type="text" name="title" value="<?php echo $row['title']; ?>"><br><br>
-    
-    <label>Deskripsi:</label><br>
-    <textarea name="description"><?php echo $row['description']; ?></textarea><br><br>
-    
-    <label>Tombol:</label><br>
-    <input type="text" name="button_text" value="<?php echo $row['button_text']; ?>"><br><br>
-    
-    <label>Link URL:</label><br>
-    <input type="text" name="link_url" value="<?php echo $row['link_url']; ?>"><br><br>
-    
-    <button type="submit">Perbarui Iklan</button>
-</form>
+    <form method="POST">
+        <label>URL Gambar:</label>
+        <input type="text" name="image_url" value="<?php echo $row['image_url']; ?>" required>
+        
+        <label>Judul Iklan:</label>
+        <input type="text" name="title" value="<?php echo $row['title']; ?>" required>
+        
+        <label>Deskripsi:</label>
+        <textarea name="description" required><?php echo $row['description']; ?></textarea>
+        
+        <label>Tombol:</label>
+        <input type="text" name="button_text" value="<?php echo $row['button_text']; ?>">
+        
+        <label>Link URL:</label>
+        <input type="text" name="link_url" value="<?php echo $row['link_url']; ?>" required>
+        
+        <button type="submit">Perbarui Iklan</button>
+    </form>
 
-<a href="kelola_banner2.php"><button>Kembali</button></a>
+    <div class="back-button">
+        <a href="kelola_banner2.php">Kembali</a>
+    </div>
+</div>
+
+<?php if ($_SERVER['REQUEST_METHOD'] == 'POST'): ?>
+    <script>
+        <?php if ($update_success): ?>
+            Swal.fire({
+                title: 'Berhasil!',
+                text: 'Data iklan berhasil diperbarui.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'kelola_banner2.php';
+                }
+            });
+        <?php else: ?>
+            Swal.fire({
+                title: 'Gagal!',
+                text: 'Error: <?php echo $error_message; ?>',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        <?php endif; ?>
+    </script>
+<?php endif; ?>
 
 </body>
 </html>

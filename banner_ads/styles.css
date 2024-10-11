@@ -1,0 +1,169 @@
+:root {
+  --text-color: #ffffff; /* Dark theme */
+  --background-color: #3c025d;
+  --border-color: #7e7e7e;
+  --font-size: 1.3em;
+  --font-footer: 1em;
+  --hover-color: #540184;
+}
+
+.dark-theme {
+  --text-color: #3c025d; /* Light theme */
+  --background-color: #ffffff;
+  --border-color: #dddddd;
+  --hover-color: #b0afaf;
+}
+
+
+/* General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2980b9;
+    color: #fff;
+    padding: 60px 30px;
+    border-radius: 12px;
+}
+
+.hero-text h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.hero-btn {
+    padding: 12px 30px;
+    background-color: #fff;
+    color: #2980b9;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.hero-btn:hover {
+    background-color: #ecf0f1;
+    color: #2980b9;
+}
+
+.hero-image img {
+    max-width: 400px;
+}
+
+/* Package Info Section */
+.package-info {
+    background-color: #fff;
+    padding: 40px 20px;
+    margin-top: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.package-card h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.package-details p {
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+/* Manage Ads Section */
+.manage-ads {
+    margin-top: 30px;
+}
+
+.ads-card {
+    background-color: #fff;
+    padding: 40px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ads-card h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.ads-slots {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.slot {
+    flex: 1;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.slot h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.slot p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.manage-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.manage-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-image {
+        margin-top: 30px;
+    }
+
+    .ads-slots {
+        flex-direction: column;
+    }
+}
