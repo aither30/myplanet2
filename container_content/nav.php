@@ -43,8 +43,8 @@
                 </div>
             <?php else: ?>
                 <div class="masuk-daftar">
-                    <a href="login.php">Masuk</a>
-                    <a href="register.php">Daftar</a>
+                    <a href="../login.php">Masuk</a>
+                    <a href="../login.php">Daftar</a>
                 </div>
             <?php endif; ?>
         </div>

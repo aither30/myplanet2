@@ -1,0 +1,291 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-image: url("./assets/attribute myplanet/Background.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  color: var(--background-color);
+  position: relative;
+  z-index: 1;
+  overflow-x: hidden;
+}
+
+/* Overlay untuk memberikan efek blur pada background image */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: inherit; /* Memastikan gambar latar belakang tetap sama */
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px); /* Efek blur */
+  z-index: -1; /* Letakkan di belakang konten body */
+  transform: scale(
+    1.1
+  ); /* Memperbesar gambar sedikit agar blur tidak memotong tepi */
+}
+
+:root {
+  --text-color: #ffffff; /* Dark theme */
+  --background-color: #3c025d;
+  --border-color: #c0c0c0;
+  --font-size: 1.3em;
+  --font-footer: 1em;
+  --hover-color: #540184;
+}
+
+/* Container utama untuk hero dan form */
+.main-container {
+  display: flex;
+  max-width: 1000px;
+  width: 100%;
+  background: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  animation: slideIn 1s ease forwards;
+}
+
+/* Animasi slide-in untuk kontainer */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero section dengan gradient warna */
+.hero {
+  flex: 1;
+  background: linear-gradient(
+    135deg,
+    var(--background-color),
+    var(--hover-color)
+  );
+  color: white;
+  padding: 60px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero .logo img {
+  width: 150px;
+  margin-bottom: 20px;
+  animation: bounceIn 1.5s ease;
+}
+
+.slogan {
+  font-style: italic;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.auth-options .btn {
+  background-color: white;
+  color: var(--background-color);
+  border: none;
+  padding: 12px 25px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.auth-options .btn:hover {
+  background-color: #f0f2f5;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Section */
+.form-section {
+  flex: 1;
+  padding: 60px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  display: none;
+  width: 100%;
+  max-width: 400px;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.form-container:not(.hidden) {
+  display: block;
+}
+
+/* Styling Form yang Modern */
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.963);
+}
+
+/* Input Group Styling */
+.input-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.input-group label {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: var(--background-color);
+  font-weight: 500;
+}
+
+.input-group input,
+.input-group select {
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #f9f9f9;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: var(--background-color);
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+
+/* Placeholder Animation */
+.input-group input::placeholder {
+  color: var(--hover-color);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+}
+
+.input-group input:focus::placeholder {
+  font-size: 0.85rem;
+  color: var(--background-color);
+}
+
+/* Button Styling */
+.form-actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.form-actions .btn {
+  background-color: var(--background-color);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 25px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.form-actions .btn:hover {
+  background-color: var(--hover-color);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.form-actions .btn-link {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  transition: color 0.3s ease;
+}
+
+.form-actions .btn-link:hover {
+  color: #0056b3;
+}
+
+/* Checkbox & Radio Button Styling */
+.input-group input[type="checkbox"],
+.input-group input[type="radio"] {
+  margin-right: 10px;
+  transform: scale(1.2);
+  vertical-align: middle;
+}
+
+.input-group label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Animasi fade-in untuk form */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .hero {
+    padding: 40px;
+  }
+
+  .form-section {
+    padding: 40px;
+  }
+
+  .form {
+    padding: 20px;
+  }
+}
+
+.hidden {
+  display: none;
+}

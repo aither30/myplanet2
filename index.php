@@ -105,7 +105,7 @@ if ($username) {
                     <a href="./dashboard_Vendor/index.php">Dashboard</a>
                     <a href="./banner_ads/index.php">Kelola Iklan</a>
                     <a href="./system.message/index.php">Pesan</a>
-                    <a href="logout.php">Keluar</a>
+                    <a href="logout_home.php">Keluar</a>
                 <?php endif; ?>
             </div>
         </div>
