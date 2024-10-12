@@ -169,7 +169,7 @@ $(document).ready(function() {
 <nav>
     <div class="left_nav">
         <div class="logo">
-            <img src="./assets/attribute myplanet/Logo My PlanEt.png" alt="My PlanET" />
+            <img src="../assets/attribute myplanet/Logo My PlanEt.png" alt="My PlanET" />
             <a href="../home.php">My PlanET</a>
         </div>
     </div>
@@ -180,8 +180,15 @@ $(document).ready(function() {
                     <button><?php echo $_SESSION['username']; ?></button>
                 </div>
                 <div class="Content-dropdown">
-                    <a href="../logout.php">Keluar</a>
-                </div>
+                    <?php if ($_SESSION['type_account'] === 'User'): ?>
+                    <a href="../dashboard_user/index.php">Dashboard</a>
+                <?php elseif ($_SESSION['type_account'] === 'Vendor'): ?>
+                    <a href="../dashboard_Vendor/index.php">Dashboard</a>
+                    <a href="../banner_ads/index.php">kelola Iklan</a>
+                <?php endif; ?>
+                        <a href="../system.message/index.php">Pesan</a>
+                        <a href="../logout.php">Keluar</a>
+                    </div>
             </div>
         <?php else: ?>
             <div class="masuk-daftar">

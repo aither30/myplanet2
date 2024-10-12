@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['type_account'] = $type_account; // Simpan tipe akun (user/vendor)
 
             // Redirect ke halaman home setelah login berhasil
-            header("Location: ../home.php");
+            header("Location: ../index.php");
             exit;
         } else {
             // Jika password tidak valid

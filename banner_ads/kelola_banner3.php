@@ -20,8 +20,8 @@ if ($result_vendor && $result_vendor->num_rows > 0) {
     $row_vendor = $result_vendor->fetch_assoc();
     $vendor_id = $row_vendor['vendor_id']; 
 
-    // Ambil jumlah stok iklan slider3 dari paket iklan vendor
-    $query_paket = "SELECT p.jumlah_iklan_slider3 
+    // Ambil jumlah total stok iklan slider3 dari semua paket aktif yang dimiliki oleh vendor
+    $query_paket = "SELECT SUM(p.jumlah_iklan_slider3) AS total_slider3
                     FROM pembelian_paket_ads ppa
                     JOIN paket_ads p ON ppa.paket_id = p.paket_id
                     WHERE ppa.vendor_id = '$vendor_id' AND ppa.status_pembayaran = 'paid' AND ppa.status_iklan = 'active'";
@@ -29,7 +29,7 @@ if ($result_vendor && $result_vendor->num_rows > 0) {
     
     if ($result_paket && $result_paket->num_rows > 0) {
         $row_paket = $result_paket->fetch_assoc();
-        $stok_iklan_slider3 = $row_paket['jumlah_iklan_slider3'];
+        $stok_iklan_slider3 = $row_paket['total_slider3'];
     }
 
     // Hitung jumlah iklan slider3 yang sudah diupload oleh vendor
@@ -41,7 +41,7 @@ if ($result_vendor && $result_vendor->num_rows > 0) {
         $jumlah_iklan_terupload = $row_jumlah_iklan['jumlah_iklan'];
     }
 
-    // Proses penambahan iklan jika form disubmit
+    // Proses penambahan iklan jika form disubmit dan slot tersedia
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && $jumlah_iklan_terupload < $stok_iklan_slider3) {
         $target_dir = "uploads/"; 
         $original_file_name = basename($_FILES["image"]["name"]);
@@ -109,7 +109,9 @@ if ($result_vendor && $result_vendor->num_rows > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Iklan Banner 3 (Slider 3)</title>
-    <link rel="stylesheet" href="style_kelolabanner3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.nav.css">
+    <link rel="stylesheet" href="style.kelola.iklan.3.css ">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function confirmDelete(bannerId) {
@@ -130,19 +132,20 @@ if ($result_vendor && $result_vendor->num_rows > 0) {
         }
 
         function showForm() {
-            document.getElementById('form-container').style.display = 'block'; // Tampilkan form
-            document.getElementById('content-section').style.display = 'none'; // Sembunyikan daftar iklan
-            document.getElementById('tambah-iklan-btn').style.display = 'none'; // Sembunyikan tombol tambah iklan
+            document.getElementById('form-container').style.display = 'block'; 
+            document.getElementById('content-section').style.display = 'none'; 
+            document.getElementById('tambah-iklan-btn').style.display = 'none'; 
         }
 
         function hideForm() {
-            document.getElementById('form-container').style.display = 'none'; // Sembunyikan form
-            document.getElementById('content-section').style.display = 'block'; // Tampilkan daftar iklan kembali
-            document.getElementById('tambah-iklan-btn').style.display = 'block'; // Tampilkan tombol tambah iklan
+            document.getElementById('form-container').style.display = 'none'; 
+            document.getElementById('content-section').style.display = 'block'; 
+            document.getElementById('tambah-iklan-btn').style.display = 'block'; 
         }
     </script>
 </head>
 <body>
+<?php include ("../container_content/nav.php")?>
 
 <div class="container">
     <h2>Kelola Iklan Banner 3 (Slider 3)</h2>
@@ -152,9 +155,6 @@ if ($result_vendor && $result_vendor->num_rows > 0) {
         <p>Anda telah menggunakan <strong id="jumlah-terupload"><?= $jumlah_iklan_terupload ?></strong> dari total slot yang tersedia.</p>
     </div>
 
-    <!-- Tombol untuk menambah iklan -->
-
-    <!-- Form untuk menambah iklan -->
     <div id="form-container" class="form-container hidden" style="display: none;">
         <form method="POST" enctype="multipart/form-data">
             <label>Unggah Gambar:</label>
@@ -177,7 +177,6 @@ if ($result_vendor && $result_vendor->num_rows > 0) {
         </form>
     </div>
 
-    <!-- Daftar iklan -->
     <div id="content-section" class="table-container">
         <table>
             <tr>
@@ -198,8 +197,8 @@ if ($result_vendor && $result_vendor->num_rows > 0) {
                             <td>{$row['description']}</td>
                             <td><a href='{$row['link_url']}' target='_blank'>Buka Link</a></td>
                             <td class='action-icons'>
-                                <a href='edit_banner3.php?id={$row['banner_id']}'>Edit</a> | 
-                                <a href='javascript:void(0)' onclick='confirmDelete({$row['banner_id']})'>Hapus</a>
+                                <a href='edit_banner3.php?id={$row['banner_id']}'><i class='fa-regular fa-pen-to-square'></i></a> | 
+                                <a href='javascript:void(0)' onclick='confirmDelete({$row['banner_id']})'><i class='fa-solid fa-trash-can'></i></a>
                             </td>
                         </tr>";
                 }
@@ -213,7 +212,6 @@ if ($result_vendor && $result_vendor->num_rows > 0) {
 
     </div>
 
-    <!-- Tombol kembali ke halaman utama -->
     <a href="index.php" class="btn-back">Kembali ke Halaman Utama</a>
 
 </div>

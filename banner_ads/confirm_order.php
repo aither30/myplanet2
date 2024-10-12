@@ -55,44 +55,14 @@ if ($order_id) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .btn {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 20px;
-            text-align: center;
-            display: block;
-            width: 100%;
-        }
-        .btn:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfirmasi Pesanan</title>
+    <link rel="stylesheet" href="../css/style.nav.css">
+    <link rel="stylesheet" href="style.confim.order.css"> <!-- Menghubungkan dengan file CSS eksternal -->
 </head>
 <body>
+<?php include ("../container_content/nav.php")?>
 <div class="container">
     <h1>Konfirmasi Pesanan</h1>
     <p><strong>Nama Paket:</strong> <?php echo isset($order_data['nama_paket']) ? $order_data['nama_paket'] : 'Data tidak tersedia'; ?></p>
@@ -102,7 +72,7 @@ if ($order_id) {
     <p><strong>Tanggal Kedaluwarsa:</strong> <?php echo isset($tanggal_kedaluwarsa) ? $tanggal_kedaluwarsa : 'Data tidak tersedia'; ?></p>
 
     <!-- Tombol Kembali ke Halaman Index -->
-    <a href="index.php">Kembali</a>
+    <a href="index.php" class="btn">Kembali</a>
 </div>
 
 </body>

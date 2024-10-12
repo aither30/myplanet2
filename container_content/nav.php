@@ -2,7 +2,7 @@
         <div class="left_nav">
             <div class="logo">
                 <img src="../assets/attribute myplanet/Logo My PlanET.png" alt="My PlanET" />
-                <a href="../home.php">My PlanET</a>
+                <a href="../index.php">My PlanET</a>
             </div>
         </div>
         <div class="mid_nav">
@@ -22,10 +22,10 @@
             </div>
         </div>
         <div class="right_nav">
-            <button id="openCartBtn"><i class="fa-solid fa-cart-shopping"></i></button>
+            <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+                <button id="openCartBtn"><i class="fa-solid fa-cart-shopping"></i></button>
             <button id="theme-toggle"><i class="fa-solid fa-circle-half-stroke"></i></button>
             <button id="openChatBtn" class="open-chat-btn"><i class="fa-solid fa-message"></i></button>
-            <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
                 <div class="Dropdown">
                     <div class="profil">
                         <button><?php echo $_SESSION['username']; ?></button>
@@ -35,8 +35,9 @@
                     <a href="../dashboard_user/index.php">Dashboard</a>
                 <?php elseif ($_SESSION['type_account'] === 'Vendor'): ?>
                     <a href="../dashboard_Vendor/index.php">Dashboard</a>
+                    <a href="../banner_ads/index.php">kelola Iklan</a>
                 <?php endif; ?>
-                        <a href="./system.message/index.php">Pesan</a>
+                        <a href="../system.message/index.php">Pesan</a>
                         <a href="../logout.php">Keluar</a>
                     </div>
                 </div>

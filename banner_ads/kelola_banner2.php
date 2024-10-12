@@ -18,8 +18,8 @@ if ($result_vendor->num_rows > 0) {
     $row_vendor = $result_vendor->fetch_assoc();
     $vendor_id = $row_vendor['vendor_id']; // Dapatkan vendor_id
 
-    // Ambil jumlah stok iklan slider2 dari paket iklan vendor
-    $query_paket = "SELECT p.jumlah_iklan_slider2 
+    // Ambil jumlah total stok iklan slider2 dari semua paket aktif yang dimiliki oleh vendor
+    $query_paket = "SELECT SUM(p.jumlah_iklan_slider2) AS total_slider2
                     FROM pembelian_paket_ads ppa
                     JOIN paket_ads p ON ppa.paket_id = p.paket_id
                     WHERE ppa.vendor_id = '$vendor_id' AND ppa.status_pembayaran = 'paid' AND ppa.status_iklan = 'active'";
@@ -28,7 +28,7 @@ if ($result_vendor->num_rows > 0) {
 
     if ($result_paket->num_rows > 0) {
         $row_paket = $result_paket->fetch_assoc();
-        $stok_iklan_slider2 = $row_paket['jumlah_iklan_slider2']; // Jumlah stok iklan slider2 dari paket
+        $stok_iklan_slider2 = $row_paket['total_slider2']; // Total stok iklan slider2 dari semua paket aktif
     }
 
     // Hitung jumlah iklan slider2 yang sudah diupload oleh vendor
@@ -37,7 +37,7 @@ if ($result_vendor->num_rows > 0) {
     $row_jumlah_iklan = $result_jumlah_iklan->fetch_assoc();
     $jumlah_iklan_terupload = $row_jumlah_iklan['jumlah_iklan']; // Jumlah iklan yang sudah diupload
 
-    // Proses penambahan iklan jika form disubmit
+    // Proses penambahan iklan jika form disubmit dan slot tersedia
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && $jumlah_iklan_terupload < $stok_iklan_slider2) {
         // Proses upload gambar
         $target_dir = "uploads/"; // Folder tempat menyimpan gambar
@@ -115,8 +115,10 @@ $result = $koneksi->query($sql);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Iklan Banner 2 (Slider)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="style_kelolabanner2.css"> <!-- Link ke file CSS -->
+    <link rel="stylesheet" href="../css/style.nav.css">
+    <link rel="stylesheet" href="style.kelola.iklan.2.css"> <!-- Link ke file CSS -->
     <script>
         function showForm() {
             document.getElementById("form-container").style.display = "block";
@@ -174,7 +176,7 @@ $result = $koneksi->query($sql);
     </script>
 </head>
 <body>
-
+    <?php include ("../container_content/nav.php")?>
 <div class="container">
     <h2>Kelola Iklan Banner 2 (Slider)</h2>
 
@@ -228,8 +230,8 @@ $result = $koneksi->query($sql);
                             <td>{$row['description']}</td>
                             <td><a href='{$row['link_url']}' target='_blank'>Buka Link</a></td>
                             <td class='action-buttons'>
-                                <a href='edit_banner2.php?id={$row['banner_id']}'>Edit</a> | 
-                                <a href='javascript:void(0);' onclick='confirmDelete({$row['banner_id']})'>Hapus</a>
+                                <a href='edit_banner2.php?id={$row['banner_id']}'><i class='fa-regular fa-pen-to-square'></i></a> | 
+                                <a href='javascript:void(0);' onclick='confirmDelete({$row['banner_id']})'><i class='fa-solid fa-trash-can'></i></a>
                             </td>
                           </tr>";
                 }

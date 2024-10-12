@@ -1,0 +1,79 @@
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+:root {
+  --text-color: #ffffff; /* Dark theme */
+  --background-color: #3c025d;
+  --border-color: #c0c0c0;
+  --font-size: 1.3em;
+  --font-footer: 1em;
+  --hover-color: #540184;
+}
+
+.dark-theme {
+  --text-color: #3c025d; /* Light theme */
+  --background-color: #ffffff;
+  --border-color: #dddddd;
+  --hover-color: #b0afaf;
+}
+
+.container {
+  max-width: 800px;
+  margin: 10vh auto;
+  background-color: var(--text-color);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h1 {
+  font-size: 2em;
+  color: var(--background-color);
+  margin-bottom: 20px;
+}
+
+.card {
+  padding: 20px;
+  background-color: var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  font-size: 1.5em;
+  color: var(--background-color);
+}
+
+.card p {
+  font-size: 1.2em;
+  margin: 10px 0;
+  color: var(--background-color);
+}
+
+.price {
+  font-size: 1.6em;
+  color: var(--background-color);
+  font-weight: bold;
+}
+
+.btn {
+  width: fit-content;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.btn:hover {
+  background-color: var(--hover-color);
+}

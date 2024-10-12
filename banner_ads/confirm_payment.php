@@ -72,6 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['paket_id'])) {
 }
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,65 +81,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['paket_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Konfirmasi Pemesanan</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/style.nav.css">
+    <link rel="stylesheet" href="confirm_payment.css"> <!-- Menghubungkan dengan file CSS eksternal -->
     <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-NyRCp2qWByvl54BPl6tUpnai"></script>
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        h1 {
-            font-size: 2em;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .card {
-            padding: 20px;
-            background-color: #fafafa;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .card h2 {
-            font-size: 1.5em;
-            color: #4CAF50;
-        }
-        .card p {
-            font-size: 1.2em;
-            margin: 10px 0;
-        }
-        .price {
-            font-size: 1.6em;
-            color: #333;
-            font-weight: bold;
-        }
-        .btn {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-        .btn:hover {
-            background-color: #45a049;
-        }
-    </style>
 </head>
 <body>
-
+<?php include ("../container_content/nav.php")?>
 <div class="container">
     <h1>Konfirmasi Pemesanan</h1>
 
