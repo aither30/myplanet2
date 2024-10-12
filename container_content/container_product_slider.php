@@ -39,7 +39,7 @@ if ($result->num_rows > 0) {
             </div>
             <div class="product-details">
                 <h3 class="product-name">' . $productName . '</h3>
-                <p class="product-price">$' . $productPrice . '</p>
+                <p class="product-price">Rp ' . $productPrice . '</p>
             </div>
             <div class="product-actions">
                 <button class="btn-add-to-cart" onclick="location.href=\'' . $linkdetailproduct . '\'">Lihat Detail</button>

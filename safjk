@@ -1,1 +1,1 @@
-midtrans_notifications.php
+system.message system.message/chat.php system.message/get_chat_list.php system.message/get_messages.php system.message/index.php system.message/send_message.php system.message/showmessage.php system.message/styles.css

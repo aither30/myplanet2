@@ -10,9 +10,11 @@ if (!isset($_SESSION['username'])) {
 
 $username_vendor = $_SESSION['username'];
 
-// Ambil informasi vendor berdasarkan username
-$query_vendor = "SELECT * FROM business_account WHERE username = '$username_vendor'";
-$result_vendor = $koneksi->query($query_vendor);
+// Menggunakan prepared statement untuk mencegah SQL Injection
+$stmt = $koneksi->prepare("SELECT * FROM business_account WHERE username = ?");
+$stmt->bind_param("s", $username_vendor);
+$stmt->execute();
+$result_vendor = $stmt->get_result();
 $vendor = $result_vendor->fetch_assoc();
 
 // Fungsi untuk menampilkan section berdasarkan halaman
@@ -20,159 +22,235 @@ function display_section($section, $koneksi, $vendor_id) {
     global $vendor, $username_vendor;
 
     switch ($section) {
-        // PROFIL
         case 'profil':
             echo "
             <div class='profile-container'>
                 <div class='profile-header'>
-                    <img src='" . $vendor['photo'] . "' alt='Foto Sampul' class='cover-photo'>
+                    <img src='{$vendor['photo']}' alt='Foto Sampul' class='cover-photo'>
                     <div class='profile-logo'>
-                        <img src='" . $vendor['logo'] . "' alt='Logo Perusahaan' class='logo'>
+                        <img src='{$vendor['logo']}' alt='Logo Perusahaan' class='logo'>
                     </div>
                 </div>
                 <div class='profile-info'>
-                    <h1>" . $vendor['name_owner'] . "</h1>
-                    <p class='company'>" . $vendor['company_name'] . "</p>
-                    <p class='address'><i class='fas fa-map-marker-alt'></i> " . $vendor['address'] . ", " . $vendor['city'] . ", " . $vendor['province'] . "</p>
+                    <h1>{$vendor['name_owner']}</h1>
+                    <p class='company'>{$vendor['company_name']}</p>
+                    <p class='address'><i class='fas fa-map-marker-alt'></i> {$vendor['address']}, {$vendor['city']}, {$vendor['province']}</p>
                     <a href='index.php?section=edit_profil' class='edit-profile-btn'>Edit Profil</a>
                 </div>
                 <div class='profile-details'>
                     <h3>Informasi Kontak</h3>
                     <div class='details-grid'>
                         <div class='details-card'>
-                            <p><strong>Telepon Vendor:</strong> " . $vendor['phone_vendor'] . "</p>
+                            <p><strong>Telepon Vendor:</strong> {$vendor['phone_vendor']}</p>
                         </div>
                         <div class='details-card'>
-                            <p><strong>Email Vendor:</strong> " . $vendor['email'] . "</p>
+                            <p><strong>Email Vendor:</strong> {$vendor['email']}</p>
                         </div>
                         <div class='details-card'>
-                            <p><strong>Telepon Pemilik:</strong> " . $vendor['phone_owner'] . "</p>
+                            <p><strong>Telepon Pemilik:</strong> {$vendor['phone_owner']}</p>
                         </div>
                         <div class='details-card'>
-                            <p><strong>Email Pemilik:</strong> " . $vendor['email_owner'] . "</p>
+                            <p><strong>Email Pemilik:</strong> {$vendor['email_owner']}</p>
                         </div>
                         <div class='details-card'>
-                            <p><strong>Jenis Bisnis:</strong> " . $vendor['jenis_bisnis'] . "</p>
+                            <p><strong>Jenis Bisnis:</strong> {$vendor['jenis_bisnis']}</p>
                         </div>
                         <div class='details-card'>
-                            <p><strong>Tanggal Operasional:</strong> " . $vendor['date_operasional'] . "</p>
+                            <p><strong>Tanggal Operasional:</strong> {$vendor['date_operasional']}</p>
                         </div>
                     </div>
                 </div>
                 <div class='profile-extras'>
                     <h3>Informasi Tambahan</h3>
-                    <p><strong>Rekening:</strong> " . $vendor['rekening'] . "</p>
-                    <p><strong>Alamat Peta:</strong> " . $vendor['map_address'] . "</p>
-                    <p><strong>Deskripsi:</strong> " . $vendor['description'] . "</p>
+                    <p><strong>Rekening:</strong> {$vendor['rekening']}</p>
+                    <p><strong>Alamat Peta:</strong> {$vendor['map_address']}</p>
+                    <p><strong>Deskripsi:</strong> {$vendor['description']}</p>
                 </div>
             </div>";
             break;
+            case 'edit_profil':
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    $name_owner = $_POST['name_owner'];
+                    $company_name = $_POST['company_name'];
+                    $phone_vendor = $_POST['phone_vendor'];
+                    $email = $_POST['email'];
+                    $phone_owner = $_POST['phone_owner'];
+                    $email_owner = $_POST['email_owner'];
+                    $address = $_POST['address'];
+                    $jenis_bisnis = $_POST['jenis_bisnis'];
+                    $date_operasional = $_POST['date_operasional'];
+                    $rekening = $_POST['rekening'];
+                    $country = $_POST['country'];
+                    $province = $_POST['province'];
+                    $city = $_POST['city'];
+                    $district = $_POST['district'];
+                    $rt = $_POST['rt'];
+                    $rw = $_POST['rw'];
+                    $map_address = $_POST['map_address'];
 
-        case 'edit_profil':
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $name_owner = $_POST['name_owner'];
-                $company_name = $_POST['company_name'];
-                $phone_vendor = $_POST['phone_vendor'];
-                $email = $_POST['email'];
-                $phone_owner = $_POST['phone_owner'];
-                $email_owner = $_POST['email_owner'];
-                $address = $_POST['address'];
-                $jenis_bisnis = $_POST['jenis_bisnis'];
-                $date_operasional = $_POST['date_operasional'];
-                $rekening = $_POST['rekening'];
-                $description = $_POST['description'];
+                    $description = isset($vendor['description']) ? $vendor['description'] : '-';
 
-                $logo = $vendor['logo'];
-                if (isset($_FILES['logo']) && $_FILES['logo']['error'] == 0) {
-                    $logo_filename = basename($_FILES['logo']['name']);
-                    $logo = 'uploads/' . $logo_filename;
-                    move_uploaded_file($_FILES['logo']['tmp_name'], $logo);
+    
+                    // Cek jika logo diunggah
+                    $logo = $vendor['logo'];
+                    if (isset($_FILES['logo']) && $_FILES['logo']['error'] == 0) {
+                        $logo_filename = basename($_FILES['logo']['name']);
+                        $logo = 'uploads/' . $logo_filename;
+                        move_uploaded_file($_FILES['logo']['tmp_name'], $logo);
+                    }
+    
+                    // Cek jika foto diunggah
+                    $photo = $vendor['photo'];
+                    if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
+                        $photo_filename = basename($_FILES['photo']['name']);
+                        $photo = 'uploads/' . $photo_filename;
+                        move_uploaded_file($_FILES['photo']['tmp_name'], $photo);
+                    }
+    
+                    // Menggunakan prepared statement untuk update data
+                    $stmt_update = $koneksi->prepare(
+                        "UPDATE business_account 
+                         SET name_owner=?, company_name=?, phone_vendor=?, email=?, phone_owner=?, email_owner=?, 
+                             address=?, jenis_bisnis=?, date_operasional=?, rekening=?, description=?, logo=?, photo=?, 
+                             country=?, province=?, city=?, district=?, rt=?, rw=?, map_address=? 
+                         WHERE vendor_id=?"
+                    );
+    
+                    // Bind parameter untuk semua kolom
+                    $stmt_update->bind_param(
+                        "ssssssssssssssssssssi",  // 21 string dan 1 integer
+                        $name_owner,
+                        $company_name,
+                        $phone_vendor,
+                        $email,
+                        $phone_owner,
+                        $email_owner,
+                        $address,
+                        $jenis_bisnis,
+                        $date_operasional,
+                        $rekening,
+                        $description,
+                        $logo,
+                        $photo,
+                        $country,
+                        $province,
+                        $city,
+                        $district,
+                        $rt,
+                        $rw,
+                        $map_address,
+                        $vendor['vendor_id']
+                    );
+    
+                    if ($stmt_update->execute()) {
+                        echo "
+                        <script>
+                            Swal.fire({
+                                title: 'Profil Berhasil Diperbarui!',
+                                text: 'Data profil Anda telah berhasil disimpan.',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = 'index.php?section=profil'; 
+                                }
+                            });
+                        </script>";
+                    } else {
+                        echo "
+                        <script>
+                            Swal.fire({
+                                title: 'Gagal Memperbarui Profil',
+                                text: 'Terjadi kesalahan, silakan coba lagi.',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        </script>";
+                    }
                 }
-
-                $photo = $vendor['photo'];
-                if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
-                    $photo_filename = basename($_FILES['photo']['name']);
-                    $photo = 'uploads/' . $photo_filename;
-                    move_uploaded_file($_FILES['photo']['tmp_name'], $photo);
-                }
-
-                $query_update = "UPDATE business_account SET name_owner='$name_owner', company_name='$company_name', phone_vendor='$phone_vendor', email='$email', phone_owner='$phone_owner', email_owner='$email_owner', address='$address', jenis_bisnis='$jenis_bisnis', date_operasional='$date_operasional', rekening='$rekening', description='$description', logo='$logo', photo='$photo' WHERE vendor_id=$vendor_id";
-
-                if ($koneksi->query($query_update)) {
-                    echo "
-                    <script>
-                        Swal.fire({
-                            title: 'Profil Berhasil Diperbarui!',
-                            text: 'Data profil Anda telah berhasil disimpan.',
-                            icon: 'success',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                window.location.href = 'index.php?section=profil'; 
-                            }
-                        });
-                    </script>";
-                } else {
-                    echo "
-                    <script>
-                        Swal.fire({
-                            title: 'Gagal Memperbarui Profil',
-                            text: 'Terjadi kesalahan, silakan coba lagi.',
-                            icon: 'error',
-                            confirmButtonText: 'OK'
-                        });
-                    </script>";
-                }
-            }
-
-            echo "
-            <div class='edit-profile-container'>
-                <h2>Edit Profil</h2>
-                <form method='POST' enctype='multipart/form-data'>
-                    <label for='name_owner'>Nama Pemilik:</label>
-                    <input type='text' name='name_owner' id='name_owner' value='" . $vendor['name_owner'] . "' required>
-
-                    <label for='company_name'>Nama Perusahaan:</label>
-                    <input type='text' name='company_name' id='company_name' value='" . $vendor['company_name'] . "' required>
-
-                    <label for='phone_vendor'>Telepon Vendor:</label>
-                    <input type='text' name='phone_vendor' id='phone_vendor' value='" . $vendor['phone_vendor'] . "' required>
-
-                    <label for='email'>Email Vendor:</label>
-                    <input type='email' name='email' id='email' value='" . $vendor['email'] . "' required>
-
-                    <label for='phone_owner'>Telepon Pemilik:</label>
-                    <input type='text' name='phone_owner' id='phone_owner' value='" . $vendor['phone_owner'] . "' required>
-
-                    <label for='email_owner'>Email Pemilik:</label>
-                    <input type='email' name='email_owner' id='email_owner' value='" . $vendor['email_owner'] . "' required>
-
-                    <label for='address'>Alamat:</label>
-                    <textarea name='address' id='address' required>" . $vendor['address'] . "</textarea>
-
-                    <label for='jenis_bisnis'>Jenis Bisnis:</label>
-                    <input type='text' name='jenis_bisnis' id='jenis_bisnis' value='" . $vendor['jenis_bisnis'] . "' required>
-
-                    <label for='date_operasional'>Tanggal Operasional:</label>
-                    <input type='date' name='date_operasional' id='date_operasional' value='" . $vendor['date_operasional'] . "' required>
-
-                    <label for='rekening'>Rekening:</label>
-                    <input type='text' name='rekening' id='rekening' value='" . $vendor['rekening'] . "'>
-
-                    <label for='description'>Deskripsi:</label>
-                    <textarea name='description' id='description' required>" . $vendor['description'] . "</textarea>
-
-                    <label for='logo'>Logo Perusahaan:</label>
-                    <input type='file' name='logo' id='logo'>
-
-                    <label for='photo'>Foto Profil (Sampul):</label>
-                    <input type='file' name='photo' id='photo'>
-
-                    <input type='submit' value='Simpan Perubahan'>
-                </form>
-            </div>";
-            break;
-
+    
+                echo "
+                <div class='edit-profile-container'>
+                    <h2>Edit Profil</h2>
+                    <form method='POST' enctype='multipart/form-data'>
+                        <label for='name_owner'>Nama Pemilik:</label>
+                        <input type='text' name='name_owner' id='name_owner' value='{$vendor['name_owner']}' required>
+    
+                        <label for='company_name'>Nama Perusahaan:</label>
+                        <input type='text' name='company_name' id='company_name' value='{$vendor['company_name']}' required>
+    
+                        <label for='phone_vendor'>Telepon Vendor:</label>
+                        <input type='text' name='phone_vendor' id='phone_vendor' value='{$vendor['phone_vendor']}' required>
+    
+                        <label for='email'>Email Vendor:</label>
+                        <input type='email' name='email' id='email' value='{$vendor['email']}' required>
+    
+                        <label for='phone_owner'>Telepon Pemilik:</label>
+                        <input type='text' name='phone_owner' id='phone_owner' value='{$vendor['phone_owner']}' required>
+    
+                        <label for='email_owner'>Email Pemilik:</label>
+                        <input type='email' name='email_owner' id='email_owner' value='{$vendor['email_owner']}' required>
+    
+                        <label for='address'>Alamat:</label>
+                        <textarea name='address' id='address' required>{$vendor['address']}</textarea>
+    
+                        <label for='jenis_bisnis'>Jenis Bisnis:</label>
+                        <select name='jenis_bisnis' id='jenis_bisnis' required>
+                            <option value='Perencanaan dan Koordinasi Acara' " . ($vendor['jenis_bisnis'] == 'Perencanaan dan Koordinasi Acara' ? 'selected' : '') . ">Perencanaan dan Koordinasi Acara</option>
+                            <option value='Tempat dan Venue' " . ($vendor['jenis_bisnis'] == 'Tempat dan Venue' ? 'selected' : '') . ">Tempat dan Venue</option>
+                            <option value='Dekorasi dan Penyewaan Alat' " . ($vendor['jenis_bisnis'] == 'Dekorasi dan Penyewaan Alat' ? 'selected' : '') . ">Dekorasi dan Penyewaan Alat</option>
+                            <option value='Sistem Suara dan Pencahayaan' " . ($vendor['jenis_bisnis'] == 'Sistem Suara dan Pencahayaan' ? 'selected' : '') . ">Sistem Suara dan Pencahayaan</option>
+                            <option value='Hiburan dan Penampilan' " . ($vendor['jenis_bisnis'] == 'Hiburan dan Penampilan' ? 'selected' : '') . ">Hiburan dan Penampilan</option>
+                            <option value='Fotografi dan Videografi' " . ($vendor['jenis_bisnis'] == 'Fotografi dan Videografi' ? 'selected' : '') . ">Fotografi dan Videografi</option>
+                            <option value='Katering dan Minuman' " . ($vendor['jenis_bisnis'] == 'Katering dan Minuman' ? 'selected' : '') . ">Katering dan Minuman</option>
+                            <option value='Busana dan Penyewaan Kostum' " . ($vendor['jenis_bisnis'] == 'Busana dan Penyewaan Kostum' ? 'selected' : '') . ">Busana dan Penyewaan Kostum</option>
+                            <option value='Transportasi dan Logistik' " . ($vendor['jenis_bisnis'] == 'Transportasi dan Logistik' ? 'selected' : '') . ">Transportasi dan Logistik</option>
+                            <option value='Keamanan dan Kesehatan' " . ($vendor['jenis_bisnis'] == 'Keamanan dan Kesehatan' ? 'selected' : '') . ">Keamanan dan Kesehatan</option>
+                            <option value='Souvenir dan Undangan' " . ($vendor['jenis_bisnis'] == 'Souvenir dan Undangan' ? 'selected' : '') . ">Souvenir dan Undangan</option>
+                            <option value='Pameran dan Promosi' " . ($vendor['jenis_bisnis'] == 'Pameran dan Promosi' ? 'selected' : '') . ">Pameran dan Promosi</option>
+                            <option value='Akomodasi dan Pemesanan' " . ($vendor['jenis_bisnis'] == 'Akomodasi dan Pemesanan' ? 'selected' : '') . ">Akomodasi dan Pemesanan</option>
+                            <option value='Upacara Adat' " . ($vendor['jenis_bisnis'] == 'Upacara Adat' ? 'selected' : '') . ">Upacara Adat</option>
+                            <option value='Wedding Organizer' " . ($vendor['jenis_bisnis'] == 'Wedding Organizer' ? 'selected' : '') . ">Wedding Organizer</option>
+                        </select>
+    
+                        <label for='date_operasional'>Tanggal Operasional:</label>
+                        <input type='date' name='date_operasional' id='date_operasional' value='{$vendor['date_operasional']}' required>
+    
+                        <label for='rekening'>Rekening:</label>
+                        <input type='text' name='rekening' id='rekening' value='{$vendor['rekening']}'>
+    
+                        <label for='map_address'>Alamat Peta:</label>
+                        <input type='text' name='map_address' id='map_address' value='{$vendor['map_address']}'>
+    
+                        <label for='country'>Negara:</label>
+                        <input type='text' name='country' id='country' value='{$vendor['country']}' required>
+    
+                        <label for='province'>Provinsi:</label>
+                        <input type='text' name='province' id='province' value='{$vendor['province']}' required>
+    
+                        <label for='city'>Kota:</label>
+                        <input type='text' name='city' id='city' value='{$vendor['city']}' required>
+    
+                        <label for='district'>Kecamatan:</label>
+                        <input type='text' name='district' id='district' value='{$vendor['district']}' required>
+    
+                        <label for='rt'>RT:</label>
+                        <input type='text' name='rt' id='rt' value='{$vendor['rt']}' required>
+    
+                        <label for='rw'>RW:</label>
+                        <input type='text' name='rw' id='rw' value='{$vendor['rw']}' required>
+    
+                        <label for='logo'>Logo Perusahaan:</label>
+                        <input type='file' name='logo' id='logo'>
+    
+                        <label for='photo'>Foto Profil (Sampul):</label>
+                        <input type='file' name='photo' id='photo'>
+    
+                        <input type='submit' value='Simpan Perubahan'>
+                    </form>
+                </div>";
+                break;
+    
         // PRODUK
         case 'product':
             echo "<h2>Daftar Produk</h2>";
@@ -211,162 +289,192 @@ function display_section($section, $koneksi, $vendor_id) {
             echo "</table>";
             break;
 
-        case 'add_product':
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $jenis_product = $_POST['jenis_product'];
-                $name = $_POST['name'];
-                $prices = $_POST['prices'];
-                $description = $_POST['description'];
-                $spesifikasi = $_POST['spesifikasi'];
-                $stocks = $_POST['stocks'];
-
-                $images = null;
-                if (isset($_FILES['images']) && $_FILES['images']['error'] == 0) {
-                    $image_filename = basename($_FILES['images']['name']);
-                    $images = 'uploads/' . $image_filename;
-                    move_uploaded_file($_FILES['images']['tmp_name'], $images);
+            case 'add_product':
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    $jenis_product = $_POST['jenis_product'];
+                    $name = $_POST['name'];
+                    $prices = $_POST['prices'];
+                    $description = $_POST['description'];
+                    $spesifikasi = $_POST['spesifikasi'];
+                    $stocks = $_POST['stocks'];
+            
+                    $images = null;
+                    if (isset($_FILES['images']) && $_FILES['images']['error'] == 0) {
+                        $image_filename = basename($_FILES['images']['name']);
+                        $images = 'uploads/' . $image_filename;
+                        move_uploaded_file($_FILES['images']['tmp_name'], $images);
+                    }
+            
+                    $query_add = "INSERT INTO product (vendor_id, jenis_product, name, prices, description, spesifikasi, images, stocks)
+                                  VALUES ($vendor_id, '$jenis_product', '$name', '$prices', '$description', '$spesifikasi', '$images', '$stocks')";
+            
+                    if ($koneksi->query($query_add)) {
+                        echo "
+                        <script>
+                            Swal.fire({
+                                title: 'Produk Berhasil Ditambahkan!',
+                                text: 'Data produk Anda telah berhasil disimpan.',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = 'index.php?section=product'; 
+                                }
+                            });
+                        </script>";
+                    } else {
+                        echo "
+                        <script>
+                            Swal.fire({
+                                title: 'Gagal Menambahkan Produk',
+                                text: 'Terjadi kesalahan, silakan coba lagi.',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        </script>";
+                    }
                 }
+            
+                echo "
+                <div class='add-product-container'>
+                    <h2>Tambah Produk Baru</h2>
+                    <form method='POST' enctype='multipart/form-data'>
+                        <label for='jenis_product'>Jenis Produk:</label>
+                        <select name='jenis_product' id='jenis_product' required>
+                            <option value='Elektronik'>Elektronik</option>
+                            <option value='Dekorasi'>Dekorasi</option>
+                            <option value='Sound System dan Pencahayaan'>Sound System dan Pencahayaan</option>
+                            <option value='Catering'>Catering</option>
+                            <option value='Busana dan Kostum'>Busana dan Kostum</option>
+                            <option value='Fotografi dan Videografi'>Fotografi dan Videografi</option>
+                            <option value='Transportasi dan Logistik'>Transportasi dan Logistik</option>
+                            <option value='Meja dan Kursi'>Meja dan Kursi</option>
+                            <option value='Souvenir'>Souvenir</option>
+                            <option value='Tenda dan Panggung'>Tenda dan Panggung</option>
+                            <option value='Keamanan dan Kesehatan'>Keamanan dan Kesehatan</option>
+                            <option value='Alat Tulis dan Bahan Cetak'>Alat Tulis dan Bahan Cetak</option>
+                            <option value='Hiburan'>Hiburan</option>
+                        </select>
+            
+                        <label for='name'>Nama Produk:</label>
+                        <input type='text' name='name' id='name' required>
+            
+                        <label for='prices'>Harga Produk:</label>
+                        <input type='number' name='prices' id='prices' step='0.01' required>
+            
+                        <label for='description'>Deskripsi Produk:</label>
+                        <textarea name='description' id='description'></textarea>
+            
+                        <label for='spesifikasi'>Spesifikasi Produk:</label>
+                        <textarea name='spesifikasi' id='spesifikasi'></textarea>
+            
+                        <label for='stocks'>Stok Produk:</label>
+                        <input type='number' name='stocks' id='stocks' required>
+            
+                        <label for='images'>Gambar Produk:</label>
+                        <input type='file' name='images' id='images'>
+            
+                        <input type='submit' value='Tambah Produk'>
+                    </form>
+                </div>";
+                break;
+            
 
-                $query_add = "INSERT INTO product (vendor_id, jenis_product, name, prices, description, spesifikasi, images, stocks)
-                              VALUES ($vendor_id, '$jenis_product', '$name', '$prices', '$description', '$spesifikasi', '$images', '$stocks')";
-
-                if ($koneksi->query($query_add)) {
+                case 'edit_product':
+                    $product_id = $_GET['id'];
+                    $query_product = "SELECT * FROM product WHERE product_id = $product_id";
+                    $result_product = $koneksi->query($query_product);
+                    $product = $result_product->fetch_assoc();
+                
+                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        $jenis_product = $_POST['jenis_product'];
+                        $name = $_POST['name'];
+                        $prices = $_POST['prices'];
+                        $description = $_POST['description'];
+                        $spesifikasi = $_POST['spesifikasi'];
+                        $stocks = $_POST['stocks'];
+                
+                        $images = $product['images'];
+                        if (isset($_FILES['images']) && $_FILES['images']['error'] == 0) {
+                            $image_filename = basename($_FILES['images']['name']);
+                            $images = 'uploads/' . $image_filename;
+                            move_uploaded_file($_FILES['images']['tmp_name'], $images);
+                        }
+                
+                        $query_update = "UPDATE product SET jenis_product='$jenis_product', name='$name', prices='$prices', description='$description', spesifikasi='$spesifikasi', images='$images', stocks='$stocks' WHERE product_id=$product_id";
+                
+                        if ($koneksi->query($query_update)) {
+                            echo "
+                            <script>
+                                Swal.fire({
+                                    title: 'Produk Berhasil Diperbarui!',
+                                    text: 'Data produk Anda telah berhasil diperbarui.',
+                                    icon: 'success',
+                                    confirmButtonText: 'OK'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.href = 'index.php?section=product'; 
+                                    }
+                                });
+                            </script>";
+                        } else {
+                            echo "
+                            <script>
+                                Swal.fire({
+                                    title: 'Gagal Memperbarui Produk',
+                                    text: 'Terjadi kesalahan, silakan coba lagi.',
+                                    icon: 'error',
+                                    confirmButtonText: 'OK'
+                                });
+                            </script>";
+                        }
+                    }
+                
                     echo "
-                    <script>
-                        Swal.fire({
-                            title: 'Produk Berhasil Ditambahkan!',
-                            text: 'Data produk Anda telah berhasil disimpan.',
-                            icon: 'success',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                window.location.href = 'index.php?section=product'; 
-                            }
-                        });
-                    </script>";
-                } else {
-                    echo "
-                    <script>
-                        Swal.fire({
-                            title: 'Gagal Menambahkan Produk',
-                            text: 'Terjadi kesalahan, silakan coba lagi.',
-                            icon: 'error',
-                            confirmButtonText: 'OK'
-                        });
-                    </script>";
-                }
-            }
-
-            echo "
-            <div class='add-product-container'>
-                <h2>Tambah Produk Baru</h2>
-                <form method='POST' enctype='multipart/form-data'>
-                    <label for='jenis_product'>Jenis Produk:</label>
-                    <input type='text' name='jenis_product' id='jenis_product' required>
-
-                    <label for='name'>Nama Produk:</label>
-                    <input type='text' name='name' id='name' required>
-
-                    <label for='prices'>Harga Produk:</label>
-                    <input type='number' name='prices' id='prices' step='0.01' required>
-
-                    <label for='description'>Deskripsi Produk:</label>
-                    <textarea name='description' id='description'></textarea>
-
-                    <label for='spesifikasi'>Spesifikasi Produk:</label>
-                    <textarea name='spesifikasi' id='spesifikasi'></textarea>
-
-                    <label for='stocks'>Stok Produk:</label>
-                    <input type='number' name='stocks' id='stocks' required>
-
-                    <label for='images'>Gambar Produk:</label>
-                    <input type='file' name='images' id='images'>
-
-                    <input type='submit' value='Tambah Produk'>
-                </form>
-            </div>";
-            break;
-
-        case 'edit_product':
-            $product_id = $_GET['id'];
-            $query_product = "SELECT * FROM product WHERE product_id = $product_id";
-            $result_product = $koneksi->query($query_product);
-            $product = $result_product->fetch_assoc();
-
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $jenis_product = $_POST['jenis_product'];
-                $name = $_POST['name'];
-                $prices = $_POST['prices'];
-                $description = $_POST['description'];
-                $spesifikasi = $_POST['spesifikasi'];
-                $stocks = $_POST['stocks'];
-
-                $images = $product['images'];
-                if (isset($_FILES['images']) && $_FILES['images']['error'] == 0) {
-                    $image_filename = basename($_FILES['images']['name']);
-                    $images = 'uploads/' . $image_filename;
-                    move_uploaded_file($_FILES['images']['tmp_name'], $images);
-                }
-
-                $query_update = "UPDATE product SET jenis_product='$jenis_product', name='$name', prices='$prices', description='$description', spesifikasi='$spesifikasi', images='$images', stocks='$stocks' WHERE product_id=$product_id";
-
-                if ($koneksi->query($query_update)) {
-                    echo "
-                    <script>
-                        Swal.fire({
-                            title: 'Produk Berhasil Diperbarui!',
-                            text: 'Data produk Anda telah berhasil diperbarui.',
-                            icon: 'success',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                window.location.href = 'index.php?section=product'; 
-                            }
-                        });
-                    </script>";
-                } else {
-                    echo "
-                    <script>
-                        Swal.fire({
-                            title: 'Gagal Memperbarui Produk',
-                            text: 'Terjadi kesalahan, silakan coba lagi.',
-                            icon: 'error',
-                            confirmButtonText: 'OK'
-                        });
-                    </script>";
-                }
-            }
-
-            echo "
-            <div class='edit-product-container'>
-                <h2>Edit Produk</h2>
-                <form method='POST' enctype='multipart/form-data'>
-                    <label for='jenis_product'>Jenis Produk:</label>
-                    <input type='text' name='jenis_product' id='jenis_product' value='" . $product['jenis_product'] . "' required>
-
-                    <label for='name'>Nama Produk:</label>
-                    <input type='text' name='name' id='name' value='" . $product['name'] . "' required>
-
-                    <label for='prices'>Harga Produk:</label>
-                    <input type='number' name='prices' id='prices' value='" . $product['prices'] . "' step='0.01' required>
-
-                    <label for='description'>Deskripsi Produk:</label>
-                    <textarea name='description' id='description'>" . $product['description'] . "</textarea>
-
-                    <label for='spesifikasi'>Spesifikasi Produk:</label>
-                    <textarea name='spesifikasi' id='spesifikasi'>" . $product['spesifikasi'] . "</textarea>
-
-                    <label for='stocks'>Stok Produk:</label>
-                    <input type='number' name='stocks' id='stocks' value='" . $product['stocks'] . "' required>
-
-                    <label for='images'>Gambar Produk:</label>
-                    <input type='file' name='images' id='images'>
-                    <p>Gambar saat ini: <img src='" . $product['images'] . "' alt='Gambar Produk' width='100'></p>
-
-                    <input type='submit' value='Simpan Perubahan'>
-                </form>
-            </div>";
-            break;
+                    <div class='edit-product-container'>
+                        <h2>Edit Produk</h2>
+                        <form method='POST' enctype='multipart/form-data'>
+                            <label for='jenis_product'>Jenis Produk:</label>
+                            <select name='jenis_product' id='jenis_product' required>
+                                <option value='Elektronik' " . ($product['jenis_product'] == 'Elektronik' ? 'selected' : '') . ">Elektronik</option>
+                                <option value='Dekorasi' " . ($product['jenis_product'] == 'Dekorasi' ? 'selected' : '') . ">Dekorasi</option>
+                                <option value='Sound System dan Pencahayaan' " . ($product['jenis_product'] == 'Sound System dan Pencahayaan' ? 'selected' : '') . ">Sound System dan Pencahayaan</option>
+                                <option value='Catering' " . ($product['jenis_product'] == 'Catering' ? 'selected' : '') . ">Catering</option>
+                                <option value='Busana dan Kostum' " . ($product['jenis_product'] == 'Busana dan Kostum' ? 'selected' : '') . ">Busana dan Kostum</option>
+                                <option value='Fotografi dan Videografi' " . ($product['jenis_product'] == 'Fotografi dan Videografi' ? 'selected' : '') . ">Fotografi dan Videografi</option>
+                                <option value='Transportasi dan Logistik' " . ($product['jenis_product'] == 'Transportasi dan Logistik' ? 'selected' : '') . ">Transportasi dan Logistik</option>
+                                <option value='Meja dan Kursi' " . ($product['jenis_product'] == 'Meja dan Kursi' ? 'selected' : '') . ">Meja dan Kursi</option>
+                                <option value='Souvenir' " . ($product['jenis_product'] == 'Souvenir' ? 'selected' : '') . ">Souvenir</option>
+                                <option value='Tenda dan Panggung' " . ($product['jenis_product'] == 'Tenda dan Panggung' ? 'selected' : '') . ">Tenda dan Panggung</option>
+                                <option value='Keamanan dan Kesehatan' " . ($product['jenis_product'] == 'Keamanan dan Kesehatan' ? 'selected' : '') . ">Keamanan dan Kesehatan</option>
+                                <option value='Alat Tulis dan Bahan Cetak' " . ($product['jenis_product'] == 'Alat Tulis dan Bahan Cetak' ? 'selected' : '') . ">Alat Tulis dan Bahan Cetak</option>
+                                <option value='Hiburan' " . ($product['jenis_product'] == 'Hiburan' ? 'selected' : '') . ">Hiburan</option>
+                            </select>
+                
+                            <label for='name'>Nama Produk:</label>
+                            <input type='text' name='name' id='name' value='" . $product['name'] . "' required>
+                
+                            <label for='prices'>Harga Produk:</label>
+                            <input type='number' name='prices' id='prices' value='" . $product['prices'] . "' step='0.01' required>
+                
+                            <label for='description'>Deskripsi Produk:</label>
+                            <textarea name='description' id='description'>" . $product['description'] . "</textarea>
+                
+                            <label for='spesifikasi'>Spesifikasi Produk:</label>
+                            <textarea name='spesifikasi' id='spesifikasi'>" . $product['spesifikasi'] . "</textarea>
+                
+                            <label for='stocks'>Stok Produk:</label>
+                            <input type='number' name='stocks' id='stocks' value='" . $product['stocks'] . "' required>
+                
+                            <label for='images'>Gambar Produk:</label>
+                            <input type='file' name='images' id='images'>
+                            <p>Gambar saat ini: <img src='" . $product['images'] . "' alt='Gambar Produk' width='100'></p>
+                
+                            <input type='submit' value='Simpan Perubahan'>
+                        </form>
+                    </div>";
+                    break;
+                
 
         case 'delete_product':
             $product_id = $_GET['id'];
@@ -762,7 +870,7 @@ function display_section($section, $koneksi, $vendor_id) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert2 -->
     <title>Dashboard Vendor</title>

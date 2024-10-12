@@ -9,29 +9,22 @@ if (!isset($_SESSION['account_id'])) {
     exit();
 }
 
-// Debugging: Menampilkan session di console.log browser
-echo "<script>console.log('Session Account ID: " . $_SESSION['account_id'] . "');</script>";
-echo "<script>console.log('Session Username: " . $_SESSION['username'] . "');</script>";
+$receiver_id = $_GET['receiver_id']; // Tangkap ID penerima
+$sender_id = $_SESSION['account_id']; // ID pengirim (user yang login)
 
-if (!isset($_GET['receiver_id']) || !is_numeric($_GET['receiver_id'])) {
-    echo "Penerima tidak valid!";
-    exit();
-}
-
-$receiver_id = $_GET['receiver_id'];
-$sender_id = $_SESSION['account_id'];
-
-// Cek apakah receiver_id valid
+// Ambil informasi penerima (vendor atau pengguna lain)
 $check_receiver = $koneksi->query("SELECT * FROM account WHERE account_id = $receiver_id");
 
-// Tambahkan pengecekan apakah query berhasil dan mengembalikan data
 if ($check_receiver && $check_receiver->num_rows > 0) {
     $receiver = $check_receiver->fetch_assoc();
 } else {
-    // Jika penerima tidak ditemukan, tampilkan pesan error yang sesuai
     echo "Penerima tidak ditemukan!";
     exit();
 }
+
+// Debugging untuk menampilkan session di console log (opsional)
+echo "<script>console.log('Session Account ID: " . $_SESSION['account_id'] . "');</script>";
+echo "<script>console.log('Session Username: " . $_SESSION['username'] . "');</script>";
 ?>
 
 <!DOCTYPE html>

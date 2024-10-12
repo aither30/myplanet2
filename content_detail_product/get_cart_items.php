@@ -55,7 +55,7 @@ if (empty($vendorProducts)) {
             <div class="cart-details">
                 <img src="../dashboard_vendor/' . htmlspecialchars($product['images']) . '" alt="' . htmlspecialchars($product['name']) . '" class="cart-image" />
                 <div class="info-details">
-                    <p>' . htmlspecialchars($product['name']) . ' - Rp. ' . number_format($product['prices'], 2) . '</p>
+                    <p>' . htmlspecialchars($product['name']) . ' - Rp ' . number_format($product['prices'], 2) . '</p>
                     <p>Quantity: 
                         <button class="quantity-btn" onclick="updateQuantity(' . $product['cart_id'] . ', -1)">-</button>
                         <span class="quantity-value" id="quantity-' . $product['cart_id'] . '">' . $product['quantity'] . '</span>

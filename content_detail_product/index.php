@@ -135,7 +135,7 @@ $vendor_logo = $product['vendor_logo'];
     </div>
     <div class="harga-product">
         <p>Harga</p>
-        <h3 id="pricePerItem">Rp. <?= number_format($product['prices'], 2); ?></h3>
+        <h3 id="pricePerItem">Rp <?= number_format($product['prices'], 2); ?></h3>
         <p>Stok Tersedia: <span id="stockAvailable"><?= $product['stocks']; ?></span></p>
     </div>
 
@@ -146,8 +146,6 @@ $vendor_logo = $product['vendor_logo'];
     </div>
 
     <div class="buy-product">
-        <button class="btn-buy-now" onclick="checkStockAndAddToCart()">Beli Sekarang</button>
-        <button class="btn-consult-package" onclick="checkStockAndAddToCart()">Konsultasi Paket</button>
         <button class="btn-add-to-cart" onclick="checkStockAndAddToCart()">Tambah ke Keranjang</button>
     </div>
 </div>
@@ -249,6 +247,9 @@ function addToCart() {
                 Swal.close();  // Tutup loader setelah selesai
 
                 if (res.status === 'success') {
+                    // Perbarui popup keranjang setelah berhasil ditambahkan
+                    loadCartItems();
+
                     Swal.fire({
                         title: 'Produk Ditambahkan!',
                         text: 'Produk berhasil ditambahkan ke keranjang.',
@@ -256,6 +257,9 @@ function addToCart() {
                         showConfirmButton: false,
                         timer: 2000
                     });
+
+                    // Tampilkan popup keranjang
+                    document.getElementById('cart-popup').style.display = 'block';
                 } else {
                     Swal.fire({
                         title: 'Gagal!',
@@ -318,8 +322,10 @@ function addToCart() {
     }
 
     document.getElementById('openCartBtn').addEventListener('click', function() {
-        displayCartItems();
-    });
+    loadCartItems();  // Muat ulang item keranjang ketika popup dibuka
+    document.getElementById('cart-popup').style.display = 'block';  // Tampilkan popup
+});
+
     </script>
 
 
@@ -388,6 +394,91 @@ function addToCart() {
   });
 </script>
 
+
+<script class="script-popup-cart">
+    function loadCartItems() {
+    $.ajax({
+        url: 'get_cart_items.php',  // Backend untuk mengambil item keranjang
+        success: function(response) {
+            $('#cart-items').html(response);  // Masukkan data ke dalam elemen cart-items
+        }
+    });
+}
+
+
+    function updateQuantity(cart_id, change) {
+    var quantityElement = document.getElementById('quantity-' + cart_id);
+    var currentQuantity = parseInt(quantityElement.textContent);
+    var newQuantity = currentQuantity + change;
+
+    if (newQuantity > 0) {
+        $.ajax({
+            url: 'update_cart_quantity_popup.php',
+            type: 'POST',
+            data: {
+                cart_id: cart_id,
+                quantity: newQuantity
+            },
+            success: function(response) {
+                var res = JSON.parse(response);
+                if (res.status === 'success') {
+                    quantityElement.textContent = newQuantity;  // Update quantity di halaman
+                    loadCartItems();  // Refresh total dan item cart
+                } else {
+                    Swal.fire('Error', res.message, 'error');
+                }
+            },
+            error: function() {
+                Swal.fire('Error', 'Gagal memperbarui quantity. Coba lagi nanti.', 'error');
+            }
+        });
+    } else {
+        Swal.fire('Invalid Quantity', 'Quantity tidak bisa kurang dari 1', 'warning');
+    }
+}
+
+function removeFromCart(cart_id) {
+    // Tampilkan dialog konfirmasi dengan SweetAlert2
+    Swal.fire({
+        title: 'Apakah Anda yakin?',
+        text: "Item ini akan dihapus dari keranjang Anda!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, hapus!',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Jika pengguna mengonfirmasi, jalankan proses penghapusan
+            $.ajax({
+                url: 'remove_from_cart_popup.php',
+                type: 'POST',
+                data: { cart_id: cart_id },
+                success: function(response) {
+                    var res = JSON.parse(response);
+                    if (res.status === 'success') {
+                        Swal.fire(
+                            'Dihapus!',
+                            'Item telah dihapus dari keranjang.',
+                            'success'
+                        );
+                        loadCartItems();  // Refresh item cart
+                    } else {
+                        Swal.fire('Error', res.message, 'error');
+                    }
+                },
+                error: function() {
+                    Swal.fire('Error', 'Gagal menghapus item dari keranjang. Coba lagi nanti.', 'error');
+                }
+            });
+        }
+    });
+}
+
+
+
+</script>
 
 </body>
 </html>

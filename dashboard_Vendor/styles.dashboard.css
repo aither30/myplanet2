@@ -1093,7 +1093,6 @@ h2 {
   text-align: center; /* Aligns the text to the center */
 }
 
-
 /* Custom SweetAlert2 Styling */
 .swal2-popup {
   font-size: 16px !important; /* Ubah ukuran font */
@@ -1126,7 +1125,6 @@ h2 {
 .swal2-confirm:hover {
   background-color: var(--border-color) !important; /* Warna hover tombol */
 }
-
 
 /*========================================================================================================================================================*/
 
@@ -1334,6 +1332,7 @@ form label {
   color: var(--background-color);
 }
 
+form select,
 form input[type="text"],
 form input[type="email"],
 form input[type="number"],
