@@ -2,18 +2,23 @@
 
 require "../config/config.php";
 
-// Validasi input
 if (empty($_POST["username"]) || empty($_POST["email"]) || empty($_POST["password"]) || empty($_POST["password_confirmation"]) || empty($_POST["type_account"])) {
     die("All fields are required.");
 }
+
+if (preg_match('/[\s\/\*\{\}\[\]]/', $_POST["username"])) {
+    die("Username cannot contain spaces or special characters like /, *, {, }.");
+}
+
 
 if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
     die("A valid email is required.");
 }
 
-if (strlen($_POST["password"]) < 8) {
-    die("Password must be at least 8 characters.");
+if (strlen($_POST["password"]) <= 8 || strlen($_POST["password"]) > 25) {
+    die("Password must be more than 8 characters and less than or equal to 25 characters.");
 }
+
 
 if ($_POST["password"] !== $_POST["password_confirmation"]) {
     die("Password and confirmation password do not match.");

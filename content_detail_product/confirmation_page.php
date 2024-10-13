@@ -152,7 +152,7 @@ $koneksi->close();
             <div class='left_nav'>
                 <div class='logo'>
                     <img src='./assets/attribute myplanet/Logo My PlanEt.png' alt='My PlanET' />
-                    <a href='../home.php'>My PlanET</a>
+                    <a href='../index.php'>My PlanET</a>
                 </div>
             </div>
             <div class='mid_nav'>
@@ -260,7 +260,7 @@ document.getElementById("createPdfBtn").addEventListener("click", function() {
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             // Ketika PDF berhasil dibuat dan disimpan, arahkan kembali ke beranda
-            window.location.href = "../home.php";
+            window.location.href = "../index.php";
         }
     };
 
