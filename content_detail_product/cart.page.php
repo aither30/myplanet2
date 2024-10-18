@@ -126,6 +126,7 @@ foreach ($vendorProducts as $vendor) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="stylecart.css">
+    <link rel="stylesheet" href="../css/style.footer.css">
 </head>
 <body>
 <?php include ("../container_content/nav.php")?>
@@ -582,5 +583,7 @@ function removeFromCart(cartId) {
             console.log("Alamat:", userInfo.address);
         }
     </script>
+
+<?php include ("../container_content/footer.php")?>
 </body>
 </html>

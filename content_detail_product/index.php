@@ -3,7 +3,7 @@ session_start(); // Memulai session
 
 // Periksa apakah pengguna sudah login
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header('Location: login.php');
+    header('Location: ../login.php');
     exit;
 }
 
@@ -61,7 +61,8 @@ $vendor_logo = $product['vendor_logo'];
     <title>Detail Product - <?= htmlspecialchars($product['name']); ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="styless.css" />
+    <link rel="stylesheet" href="../css/style.footer.css">
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 <?php include ("../container_content/nav.php")?>
@@ -329,39 +330,6 @@ function addToCart() {
     </script>
 
 
-    <footer>
-        <div class="content-footer">
-            <div class="container-footer">
-                <div class="desksingkatmyplanet">
-                    <div class="logo">
-                        <img src="./assets/attribute myplanet/Logo My PlanEt.png" alt="My PlanET" />
-                        <h3>My PlanET</h3>
-                    </div>
-                    <p>My PlanEt adalah platform perencana acara yang menggabungkan teknologi dan kreativitas untuk menyelenggarakan acara yang tak terlupakan.</p>
-                </div>
-                <div class="sitemap">
-                    <h3>Situs Map</h3>
-                    <ul>
-                        <li>Cek Transaksi</li>
-                        <li>Banding Harga</li>
-                        <li>Dashboard</li>
-                        <li>Tentang Kami</li>
-                    </ul>
-                </div>
-                <div class="sosmed">
-                    <h3>Sosial Media</h3>
-                    <ul>
-                        <li>Tiktok</li>
-                        <li>Instagram</li>
-                        <li>Facebook</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>©℗ 2024 My Planet. All rights reserved.</p>
-        </div>
-    </footer>
 
 <script>
   $(document).ready(function(){
@@ -479,6 +447,7 @@ function removeFromCart(cart_id) {
 
 
 </script>
+<?php include ("../container_content/footer.php")?>
 
 </body>
 </html>

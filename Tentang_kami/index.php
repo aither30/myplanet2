@@ -16,7 +16,7 @@ session_start()
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.tentangkami.css" />
     <title>Tentang Kami</title>
   </head>
   <body>
@@ -96,6 +96,14 @@ session_start()
             </div>
         </div>
     </section>
+    <div class="whatsapp-contact-elegant">
+    <a href="https://wa.me/6281234567890" target="_blank">
+        <div class="whatsapp-button">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>Chat Kami via WhatsApp</span>
+        </div>
+    </a>
+</div>
     <div class="team-section">
         <h1>Tim Kami</h1>
         <div class="team-container">
@@ -130,5 +138,8 @@ session_start()
             </div>
         </div>
     </div>
+
+
+
   </body>
 </html>

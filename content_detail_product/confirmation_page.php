@@ -147,7 +147,8 @@ $koneksi->close();
     <title>Konfirmasi Pembayaran Berhasil</title>
     <link rel="stylesheet" href="../css/style.nav.css">
     <link rel="stylesheet" href="style_confirmation_page.css">
-</head>
+    <link rel="stylesheet" href="../css/style.footer.css">
+    </head>
 <body>
 <?php include ("../container_content/nav.php")?>
     <div class="container">
@@ -229,39 +230,6 @@ document.getElementById("createPdfBtn").addEventListener("click", function() {
 
     </div>
 
-    <footer>
-    <div class="content-footer">
-        <div class="container-footer">
-            <div class="desksingkatmyplanet">
-                <div class="logo">
-                    <img src="./assets/attribute myplanet/Logo My PlanEt.png" alt="My PlanET" />
-                    <h3>My PlanET</h3>
-                </div>
-                <p>My PlanEt adalah platform perencana acara yang menggabungkan teknologi dan kreativitas untuk menyelenggarakan acara yang tak terlupakan.</p>
-            </div>
-            <div class="sitemap">
-                <h3>Situs Map</h3>
-                <ul>
-                    <li>Cek Transaksi</li>
-                    <li>Banding Harga</li>
-                    <li>Dashboard</li>
-                    <li>Tentang Kami</li>
-                </ul>
-            </div>
-            <div class="sosmed">
-                <h3>Sosial Media</h3>
-                <ul>
-                    <li>Tiktok</li>
-                    <li>Instagram</li>
-                    <li>Facebook</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="copyright">
-        <p>©℗ 2024 My Planet. All rights reserved.</p>
-    </div>
-</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -289,5 +257,8 @@ document.getElementById("createPdfBtn").addEventListener("click", function() {
 // Tampilkan pesan di console.log
 console.log(`<?php echo nl2br($logMessages); ?>`);
 </script>
+
+<?php include ("../container_content/footer.php")?>
+
 </body>
 </html>

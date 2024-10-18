@@ -55,6 +55,7 @@ if ($username) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./css/style.footer.css">
     <title>My PlanET</title>
 </head>
 <body>
@@ -100,7 +101,7 @@ if ($username) {
                 <?php if ($type_account === 'User'): ?>
                     <a href="./dashboard_user/index.php">Dashboard</a>
                     <a href="./system.message/index.php">Pesan</a>
-                    <a href="logout.php">Keluar</a>
+                    <a href="logout_home.php">Keluar</a>
                 <?php elseif ($type_account === 'Vendor'): ?>
                     <a href="./dashboard_Vendor/index.php">Dashboard</a>
                     <a href="./banner_ads/index.php">Kelola Iklan</a>
@@ -194,47 +195,7 @@ if ($username) {
 </div>
 
 
-
-    <footer>
-      <div class="content-footer">
-        <div class="container-footer">
-          <div class="desksingkatmyplanet">
-            <div class="logo">
-              <img
-                src="./assets/attribute myplanet/Logo My PlanEt.png"
-                alt="My PlanET"
-              />
-              <h3>My PlanET</h3>
-            </div>
-            <p>
-              My PlanEt adalah platform perencana acara yang menggabungkan
-              teknologi dan kreativitas untuk menyelenggarakan acara yang tak
-              terlupakan.
-            </p>
-          </div>
-          <div class="sitemap">
-            <h3>Situs Map</h3>
-            <ul>
-              <li>Cek Transaksi</li>
-              <li>Banding Harga</li>
-              <li>Dashboard</li>
-              <li>Tentang Kami</li>
-            </ul>
-          </div>
-          <div class="sosmed">
-            <h3>Sosial Media</h3>
-            <ul>
-              <li>Tiktok</li>
-              <li>Instagram</li>
-              <li>Facebook</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="copyright">
-        <p>©℗ 2024 My Planet. All rights reserved.</p>
-      </div>
-    </footer>
+<?php include ("./container_content/footer.php")?>
 
     <script >
       document.getElementById("theme-toggle").addEventListener("click", function () {
