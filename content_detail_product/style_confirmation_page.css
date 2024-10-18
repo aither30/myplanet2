@@ -1,0 +1,105 @@
+
+:root {
+  --text-color: #ffffff; /* Dark theme */
+  --background-color: #3c025d;
+  --border-color: #7e7e7e;
+  --font-size: 1.3em;
+  --font-footer: 1em;
+  --hover-color: #540184;
+}
+
+.dark-theme {
+  --text-color: #3c025d; /* Light theme */
+  --background-color: #ffffff;
+  --border-color: #dddddd;
+  --hover-color: #b0afaf;
+}
+
+.container {
+  margin: 2vw 5vw 5vw 5vw;
+  padding: 20px;
+  background-color: var(--text-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Styling for the download button */
+.btn-download {
+  position: absolute;
+  top: 16vh;
+  right: 10vw;
+  padding: 10px 15px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.btn-download:hover {
+  background-color: var(--hover-color);
+}
+
+h1,
+h2 {
+  text-align: center;
+  color: var(--background-color);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+table th,
+table td {
+  border: 1px solid var(--background-color);
+  padding: 10px;
+  text-align: left;
+}
+
+table tr {
+  color: var(--background-color);
+}
+
+table th {
+  background-color: var(--text-color);
+  font-weight: bold;
+}
+
+.info-table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--hover-color);
+}
+
+.message {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn {
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background-color: darkgreen;
+}
+
+tfoot td {
+  font-weight: bold;
+  text-align: right;
+}
+
+tfoot .total {
+  text-align: right;
+}

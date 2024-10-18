@@ -154,6 +154,6 @@ $stmt->execute();
 // Tutup koneksi
 $koneksi->close();
 
-header("Location: ../home.php"); // Redirect ke halaman beranda setelah selesai
+header("Location: ../index.php"); // Redirect ke halaman beranda setelah selesai
 exit;
 ?>

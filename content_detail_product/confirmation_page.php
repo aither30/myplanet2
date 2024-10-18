@@ -145,58 +145,11 @@ $koneksi->close();
     />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <title>Konfirmasi Pembayaran Berhasil</title>
-    <link rel="stylesheet" href="confirmation_page.css">
+    <link rel="stylesheet" href="../css/style.nav.css">
+    <link rel="stylesheet" href="style_confirmation_page.css">
 </head>
 <body>
-<nav>
-            <div class='left_nav'>
-                <div class='logo'>
-                    <img src='./assets/attribute myplanet/Logo My PlanEt.png' alt='My PlanET' />
-                    <a href='../index.php'>My PlanET</a>
-                </div>
-            </div>
-            <div class='mid_nav'>
-                <ul>
-                    <li><a href='#'>Tentang Kami</a></li>
-                    <li><a href='../cek_transaksi/index.php'>Cek Transaksi</a></li>
-                    <li><a href='#' onclick='openSearchPopup()'>Search</a></li>
-                </ul>
-                <div class='Dropdown2'>
-                    <div class='bandingharga'>
-                        <button onclick='toggleDropdown()'>Banding Harga</button>
-                    </div>
-                    <div class='Content-dropdown2' id='dropdownContent2'>
-                        <a href='./banding_harga_vendor/index.html'>Banding Harga Vendor</a>
-                        <a href='./banding_harga_product/index.html'>Banding Harga Produk</a>
-                    </div>
-                </div>
-            </div>
-            <div class='right_nav'>
-                <button id='theme-toggle'><i class='fa-solid fa-circle-half-stroke'></i></button>
-                <button id='openChatBtn' class='open-chat-btn'><i class='fa-solid fa-message'></i></button>
-                <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
-                    <div class='Dropdown'>
-                        <div class='profil'>
-                            <button><?php echo $_SESSION['username']; ?></button>
-                        </div>
-                        <div class='Content-dropdown'>
-                            <?php if ($_SESSION['type_account'] === 'User'): ?>
-                                <a href='./dashboard_user/index.php'>Dashboard</a>
-                            <?php elseif ($_SESSION['type_account'] === 'Vendor'): ?>
-                                <a href='./dashboard_Vendor/index.php'>Dashboard</a>
-                            <?php endif; ?>
-                            <a href='./system.message/index.php'>Pesan</a>
-                            <a href='../logout.php'>Keluar</a>
-                        </div>
-                    </div>
-                <?php else: ?>
-                    <div class='masuk-daftar'>
-                        <a href='login.php'>Masuk</a>
-                        <a href='register.php'>Daftar</a>
-                    </div>
-                <?php endif; ?>
-            </div>
-        </nav>
+<?php include ("../container_content/nav.php")?>
     <div class="container">
         <h1>Pembayaran Berhasil!</h1>
         <a href="download_invoice.php?order_id=<?= $orderId ?>" class="btn-download">Unduh Invoice</a>
@@ -249,24 +202,29 @@ $koneksi->close();
 </div>
 
 <script>
-// Tambahkan event listener pada tombol untuk membuat PDF
 document.getElementById("createPdfBtn").addEventListener("click", function() {
-    // Menggunakan AJAX untuk memanggil skrip PHP tanpa merefresh halaman
+    // Definisikan objek XMLHttpRequest
     var xhr = new XMLHttpRequest();
+    
+    // Menggunakan AJAX untuk memanggil skrip PHP tanpa merefresh halaman
     xhr.open("POST", "create_invoice_pdf.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    // Kirimkan data yang diperlukan ke skrip PHP
     xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            // Ketika PDF berhasil dibuat dan disimpan, arahkan kembali ke beranda
-            window.location.href = "../index.php";
+        if (xhr.readyState === 4) {
+            console.log("Status: " + xhr.status);
+            if (xhr.status === 200) {
+                window.location.href = "../index.php"; // Arahkan ke beranda jika sukses
+            } else {
+                console.log("Error: Unable to create PDF");
+            }
         }
     };
 
     // Kirim permintaan dengan order ID atau informasi lain yang dibutuhkan
     xhr.send("order_id=<?php echo $orderId; ?>&user_id=<?php echo $userId; ?>");
 });
+
 </script>
 
     </div>

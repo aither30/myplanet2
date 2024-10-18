@@ -65,7 +65,7 @@ if ($username) {
             src="./assets/attribute myplanet/Logo My PlanEt.png"
             alt="My PlanET"
           />
-          <a href="./home.php">My PlanET</a>
+          <a href="index.php">My PlanET</a>
         </div>
       </div>
       <div class="mid_nav">
